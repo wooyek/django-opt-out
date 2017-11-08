@@ -8,8 +8,7 @@
 -e .
 
 # Tooling
-# TODO: Not install tooling into virtualenv
-# -r tooling.txt
+-r tooling.txt
 
 # Documentaion
 -r ../docs/requirements.txt

@@ -23,7 +23,6 @@ install:
   - pip --version
   - tox --version
   - git --version
-  - python3 -m venv -h
 
 script:
   - tox -e $TOXENV
