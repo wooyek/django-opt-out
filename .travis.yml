@@ -16,8 +16,8 @@ before_install:
   - lsb_release -a
   - sudo apt-get install -y git-flow
 
-install: 
-  - pip install -r requirements/test.txt
+install:
+  - pip install -r requirements/local.txt
   - virtualenv --version
   - easy_install --version
   - pip --version
@@ -25,7 +25,7 @@ install:
   - git --version
   - python3 -m venv -h
 
-script: 
+script:
   - tox -e $TOXENV
 
 jobs:
