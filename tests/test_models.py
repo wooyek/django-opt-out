@@ -10,7 +10,6 @@ Tests for `django-opt-out` models module.
 from django.test import SimpleTestCase, TestCase
 from django.test.utils import override_settings
 from mock import patch
-
 from six.moves.urllib.parse import quote_plus
 
 from django_opt_out import factories, models
