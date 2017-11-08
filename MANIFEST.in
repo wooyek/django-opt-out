@@ -42,3 +42,4 @@ recursive-include example_project *.py
 recursive-include example_project *.txt
 recursive-include example_project *.env
 recursive-include example_project .gitignore
+recursive-exclude example_project/.eggs *.*

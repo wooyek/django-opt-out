@@ -1,5 +1,4 @@
 # coding=utf-8
-import logging
 from django import test
 from django.shortcuts import resolve_url
 from django.test import TestCase, override_settings
@@ -7,7 +6,7 @@ from django.test.utils import TestContextDecorator
 from django_powerbank.testing.base import AssertionsMx
 from mock import Mock
 
-from django_opt_out import models, factories, signals
+from django_opt_out import factories, models, signals
 from django_opt_out.utils import get_opt_out_url
 
 
@@ -15,6 +14,7 @@ class CaptureSignal(TestContextDecorator):
     """
     A function decorator to connect/disconnect mock handler functions to signals
     """
+
     def __init__(self, signal, kwarg_name='handler', handler=None):
         super(CaptureSignal, self).__init__(kwarg_name=kwarg_name)
         self.signal = signal
@@ -122,7 +122,7 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
         self.assertIsNone(item_tag.value)
 
     def test_valid_tag_value(self):
-        tag = factories.OptOutTagFactory(name='source')
+        factories.OptOutTagFactory(name='source')
         url = get_opt_out_url("foo@bar.com", "source:some")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
@@ -223,7 +223,3 @@ class OptOutUpdatePostTests(TestCase, AssertionsMx):
         response = test.Client().post(url, data={'email': item.email})
         self.assertNoFormErrors(response)
         self.assertRedirects(response, resolve_url("django_opt_out:OptOutSuccess", item.pk, item.secret, item.email))
-
-
-
-

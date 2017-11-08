@@ -94,7 +94,6 @@ TEMPLATES = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
@@ -103,8 +102,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-
 
 LOGGING = {
     'version': 1,

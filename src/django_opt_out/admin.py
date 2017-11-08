@@ -19,7 +19,7 @@ class OptOutQuestionAdmin(ImportExportMixin, admin.ModelAdmin):
 
 
 @admin.register(models.OptOutFeedback)
-class OptOutQuestionAdmin(ImportExportMixin, admin.ModelAdmin):
+class OptOutFeedbackAdmin(ImportExportMixin, admin.ModelAdmin):
     list_display = ('question', 'all_tag_names')
     list_filter = ('tags',)
 
@@ -28,6 +28,6 @@ class OptOutQuestionAdmin(ImportExportMixin, admin.ModelAdmin):
 
     all_tag_names.short_description = 'Tag names'
 
-
+    # noinspection PyUnusedLocal,PyMethodMayBeStatic
     def queryset(self, request, queryset):
         return queryset.prefech_related('tags')

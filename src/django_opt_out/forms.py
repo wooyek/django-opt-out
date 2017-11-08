@@ -1,8 +1,8 @@
 # coding=utf-8
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from . import models
-from django.utils.translation import ugettext as __, ugettext_lazy as _
 
 
 class OptOutForm(forms.ModelForm):
@@ -25,4 +25,3 @@ class OptOutForm(forms.ModelForm):
             feedback = models.OptOutFeedback.objects.filter(pk__in=self.cleaned_data['feedback'])
             item.feedback.add(*feedback)
         return item
-

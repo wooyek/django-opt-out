@@ -47,10 +47,10 @@ def get_version(*file_paths):
 
 version = get_version("src", "django_opt_out", "__init__.py")
 
-
 if sys.argv[-1] == 'publish':
     try:
         import wheel
+
         print("Wheel version: ", wheel.__version__)
     except ImportError:
         print('Wheel library missing. Please run "pip install wheel"')

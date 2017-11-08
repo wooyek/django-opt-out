@@ -2,20 +2,17 @@
 import logging
 
 from django.db.models import Q
-from django.utils import timezone
 from django.shortcuts import resolve_url
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import ModelFormMixin
 from django_powerbank.views import Http403
-from django_powerbank.views.auth import StaffRequiredMixin, AbstractAuthorizedView, AbstractAccessView
-from django_powerbank.views.mixins import ReturnUrlMx
+from django_powerbank.views.auth import AbstractAccessView
 from pascal_templates.views import CreateView, DetailView, UpdateView
-from django.utils.translation import ugettext as __, ugettext_lazy as _
 
-from django_opt_out.signals import opt_out_visited, opt_out_submitted
+from django_opt_out.signals import opt_out_submitted, opt_out_visited
 from django_opt_out.utils import validate_password
-from . import models
-
-from . import forms
+from . import forms, models
 
 
 class OptOutConfirm(CreateView):
@@ -68,7 +65,6 @@ class OptOutConfirm(CreateView):
 
     def get_success_url(self):
         return resolve_url("django_opt_out:OptOutSuccess", self.object.pk, self.object.secret, self.object.email)
-
 
 
 class OptOutBase(AbstractAccessView):

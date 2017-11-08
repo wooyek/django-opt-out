@@ -65,4 +65,3 @@ class OptOutTagValue(BaseModel):
 
     def __str__(self):
         return "OptOut-{}:{}:{}".format(self.opt_out_id, self.tag.name, self.value)
-

@@ -5,12 +5,8 @@
 
 import os
 import re
-import sys
-import uuid
 from glob import glob
 from os.path import basename, splitext
-
-from pip.req import parse_requirements
 
 try:
     from setuptools import setup, find_packages
@@ -27,6 +23,7 @@ def get_version(*file_paths):
     if version_match:
         return version_match.group(1)
     raise RuntimeError('Unable to find version string.')
+
 
 version = get_version("src", "django_opt_out", "__init__.py")
 
