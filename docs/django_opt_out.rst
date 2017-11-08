@@ -1,8 +1,31 @@
 django\_opt\_out package
 ========================
 
+Subpackages
+-----------
+
+.. toctree::
+
+    django_opt_out.migrations
+
 Submodules
 ----------
+
+django\_opt\_out\.admin module
+------------------------------
+
+.. automodule:: django_opt_out.admin
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+django\_opt\_out\.app\_settings module
+--------------------------------------
+
+.. automodule:: django_opt_out.app_settings
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 django\_opt\_out\.apps module
 -----------------------------
@@ -20,6 +43,22 @@ django\_opt\_out\.cli module
     :undoc-members:
     :show-inheritance:
 
+django\_opt\_out\.factories module
+----------------------------------
+
+.. automodule:: django_opt_out.factories
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+django\_opt\_out\.forms module
+------------------------------
+
+.. automodule:: django_opt_out.forms
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 django\_opt\_out\.models module
 -------------------------------
 
@@ -28,10 +67,26 @@ django\_opt\_out\.models module
     :undoc-members:
     :show-inheritance:
 
+django\_opt\_out\.signals module
+--------------------------------
+
+.. automodule:: django_opt_out.signals
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 django\_opt\_out\.urls module
 -----------------------------
 
 .. automodule:: django_opt_out.urls
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+django\_opt\_out\.utils module
+------------------------------
+
+.. automodule:: django_opt_out.utils
     :members:
     :undoc-members:
     :show-inheritance:

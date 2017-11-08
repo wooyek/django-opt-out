@@ -29,9 +29,24 @@ project_root = os.path.dirname(cwd)
 # Insert the project root dir as the first element in the PYTHONPATH.
 # This lets us ensure that the source package is imported, and that its
 # version is used.
+sys.path.insert(0, project_root)
 sys.path.insert(0, os.path.join(project_root, 'src'))
 
+
+def setup_django():
+    import django
+    from django.conf import settings
+    from tests.settings import INSTALLED_APPS
+    settings.configure(INSTALLED_APPS=INSTALLED_APPS)
+    django.setup()
+
+setup_django()
 import django_opt_out
+
+autodoc_default_flags = ['members',]
+autosummary_generate = True
+modindex_common_prefix = ['django_opt_out.']
+# html_domain_indices = ['py-modindex']  # ignore np-modindex
 
 # -- General configuration ---------------------------------------------
 
@@ -40,7 +55,11 @@ import django_opt_out
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

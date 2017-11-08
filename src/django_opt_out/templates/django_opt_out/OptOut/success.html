@@ -1,0 +1,16 @@
+{% extends "django_opt_out/base.html" %}
+{% load bootstrap i18n %}
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <h4 class="card-header">{% blocktrans %}Thank you for your feedback!{% endblocktrans %}</h4>
+                <div class="card-body">
+                    {% include "django_opt_out/OptOut/success_apologies.html" %}
+                    <a href="{% url 'django_opt_out:OptOutUpdate' object.pk object.secret object.email %}" class="btn btn-primary">{% blocktrans %}Update opt-out feedback{% endblocktrans %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,7 +1,10 @@
-# Your app requirements.
+# Your app requirements and the app in editable mode..
 -r ../requirements/local.txt
-
-# Your app in editable mode.
 -e ../
+
+# This example in editable mode
+-e .
+
+# This example requirements that are not already included in the app requirements
 django
 django-environ

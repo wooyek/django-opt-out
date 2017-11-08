@@ -88,6 +88,9 @@ setup(
     },
     include_package_data=True,
     install_requires=[str(r.req) for r in install_requires] + ['Django>=1.10'],
+    extras_require={
+        'factories': ['factory-boy'],
+    },
     license="MIT license",
     zip_safe=False,
     keywords='django-opt-out',

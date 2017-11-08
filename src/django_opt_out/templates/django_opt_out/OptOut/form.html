@@ -1,0 +1,23 @@
+{% extends "django_opt_out/base.html" %}
+{% load bootstrap i18n %}
+{% block content %}
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <h4 class="card-header">{% blocktrans %}Opt out from our messages{% endblocktrans %}</h4>
+                <div class="card-body">
+                    <form role="form" method="POST">
+                        {% csrf_token %}
+                        {% include "django_opt_out/OptOut/form_apologies.html" %}
+                        {{ form|bootstrap }}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">{% blocktrans %}Confirm opt-out{% endblocktrans %}</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
