@@ -1,5 +1,5 @@
 # coding=utf-8
-from urllib.parse import urlencode
+from six.moves.urllib.parse import urlencode
 from django.conf import settings
 from django.contrib.auth.hashers import make_password, check_password
 

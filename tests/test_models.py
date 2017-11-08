@@ -7,7 +7,7 @@ test_django-opt-out
 
 Tests for `django-opt-out` models module.
 """
-from urllib.parse import quote_plus
+from six.moves.urllib.parse import quote_plus
 
 from django.test import TestCase, SimpleTestCase
 from django.test.utils import override_settings

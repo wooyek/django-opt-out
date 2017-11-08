@@ -11,6 +11,7 @@ from django_powerbank.views.mixins import ReturnUrlMx
 from pascal_templates.views import CreateView, DetailView, UpdateView
 from django.utils.translation import ugettext as __, ugettext_lazy as _
 
+from django_opt_out.signals import opt_out_visited, opt_out_submitted
 from django_opt_out.utils import validate_password
 from . import models
 
@@ -42,9 +43,15 @@ class OptOutConfirm(CreateView):
 
         return form
 
+    def get_context_data(self, **kwargs):
+        kwargs['tags'] = self.get_tags()
+        opt_out_visited.send_robust(self.__class__, view=self, request=self.request, context=kwargs)
+        return super().get_context_data(**kwargs)
+
     def form_valid(self, form):
         self.object = form.save()
         self.save_tags()
+        opt_out_submitted.send_robust(self.__class__, view=self, request=self.request, opt_out=self.object)
         return super(ModelFormMixin, self).form_valid(form)
 
     def get_tags(self):
@@ -61,6 +68,7 @@ class OptOutConfirm(CreateView):
 
     def get_success_url(self):
         return resolve_url("django_opt_out:OptOutSuccess", self.object.pk, self.object.secret, self.object.email)
+
 
 
 class OptOutBase(AbstractAccessView):

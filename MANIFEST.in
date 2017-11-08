@@ -35,7 +35,10 @@ recursive-include tests *.env
 recursive-include tests *.py
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+recursive-exclude * .eggs .tox .tmp
 recursive-include example_project *.html
 recursive-include example_project *.md
 recursive-include example_project *.py
 recursive-include example_project *.txt
+recursive-include example_project *.env
+recursive-include example_project .gitignore

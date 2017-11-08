@@ -3,19 +3,39 @@ import logging
 from django import test
 from django.shortcuts import resolve_url
 from django.test import TestCase, override_settings
+from django.test.utils import TestContextDecorator
 from django_powerbank.testing.base import AssertionsMx
+from mock import Mock
 
-
-from django_opt_out import models, factories
+from django_opt_out import models, factories, signals
 from django_opt_out.utils import get_opt_out_url
 
 
+class CaptureSignal(TestContextDecorator):
+    """
+    A function decorator to connect/disconnect mock handler functions to signals
+    """
+    def __init__(self, signal, kwarg_name='handler', handler=None):
+        super(CaptureSignal, self).__init__(kwarg_name=kwarg_name)
+        self.signal = signal
+        self.handler = handler or Mock()
+
+    def enable(self):
+        self.signal.connect(self.handler)
+        return self.handler
+
+    def disable(self):
+        self.signal.connect(self.handler)
+
+
 class OptOutConfirmGetTests(TestCase, AssertionsMx):
-    def test_empty(self):
+    @CaptureSignal(signals.opt_out_visited)
+    def test_empty(self, handler):
         url = resolve_url("django_opt_out:OptOutConfirm")
         response = test.Client().get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual({}, response.context_data['form'].errors)
+        self.assertTrue(handler.called)
 
     def test_simple(self):
         url = get_opt_out_url("foo@bar.com")
@@ -71,7 +91,8 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
 
 
 class OptOutConfirmPostTests(TestCase, AssertionsMx):
-    def test_just_email(self):
+    @CaptureSignal(signals.opt_out_submitted)
+    def test_just_email(self, handler):
         url = resolve_url("django_opt_out:OptOutConfirm")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
@@ -80,6 +101,7 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
         self.assertEqual(item.email, 'foo@bar.com')
         url = resolve_url("django_opt_out:OptOutSuccess", item.pk, item.secret, item.email)
         self.assertRedirects(response, url)
+        self.assertTrue(handler.called)
 
     def test_comment(self):
         url = resolve_url("django_opt_out:OptOutConfirm")
@@ -201,4 +223,7 @@ class OptOutUpdatePostTests(TestCase, AssertionsMx):
         response = test.Client().post(url, data={'email': item.email})
         self.assertNoFormErrors(response)
         self.assertRedirects(response, resolve_url("django_opt_out:OptOutSuccess", item.pk, item.secret, item.email))
+
+
+
 
