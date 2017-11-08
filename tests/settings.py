@@ -15,9 +15,11 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 from __future__ import absolute_import, unicode_literals
-import os
+
 import logging
+import os
 from pathlib import Path
+
 import environ
 
 logging.basicConfig(format='%(asctime)s %(levelname)-7s %(thread)-5d %(filename)s:%(lineno)s | %(funcName)s | %(message)s', datefmt='%H:%M:%S')

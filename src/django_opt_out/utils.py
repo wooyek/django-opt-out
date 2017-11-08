@@ -1,7 +1,7 @@
 # coding=utf-8
-from six.moves.urllib.parse import urlencode
 from django.conf import settings
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import check_password, make_password
+from six.moves.urllib.parse import urlencode
 
 
 def get_opt_out_url(email, *tags, base_url=None):

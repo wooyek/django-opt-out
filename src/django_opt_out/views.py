@@ -10,9 +10,9 @@ from django_powerbank.views import Http403
 from django_powerbank.views.auth import AbstractAccessView
 from pascal_templates.views import CreateView, DetailView, UpdateView
 
-from django_opt_out.signals import opt_out_submitted, opt_out_visited
-from django_opt_out.utils import validate_password
 from . import forms, models
+from .signals import opt_out_submitted, opt_out_visited
+from .utils import validate_password
 
 
 class OptOutConfirm(CreateView):
