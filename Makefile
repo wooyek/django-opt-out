@@ -48,10 +48,10 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 
 lint: ## check style with flake8
-	python setup.py check --strict --metadata --restructuredtext
-	check-manifest  --ignore .idea,.idea/* .
 	flake8 src tests setup.py
 	isort --verbose --check-only --diff --recursive src tests setup.py
+	python setup.py check --strict --metadata --restructuredtext
+	check-manifest  --ignore .idea,.idea/* .
 
 test: ## run tests quickly with the default Python
 	pytest
