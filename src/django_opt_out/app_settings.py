@@ -22,3 +22,9 @@ OPT_OUT_SECRET = settings.SECRET_KEY[::4]
 # to validate that user actually got our message we put passwords int he opt-out url
 # these have minimal security to we keep them simple and short
 OPT_OUT_PASSWORD_HASHER = 'default'
+
+# a custom view with goodbye message and suggestion to reconsider and change user feedback
+# This view url must be similar to the OptOutSuccess view url
+# It should not drop usage of secret as it ensures that a visitor is authenticated
+# When providing your own please consider using OptOutBase as view base class
+OPT_OUT_GOODBYE_VIEW = None

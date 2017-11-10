@@ -1,0 +1,9 @@
+text,feedback,id,language
+Chcę skasować swoje konto użytkownika,account-delete,8,pl
+Wstrzymajcie wysyłanie wiadomości przez 1 rok,suppress-1y,7,pl
+Wstrzymajcie wysyłanie wiadomości przez 6 miesięcy,suppress-6m,6,pl
+Nie wysyłajcie mi żadnych nowych wiadomości,no-messages-ever,5,pl
+Chcę zmienić ustawienia powiadomień,change-notification-settings,4,pl
+Wysyłacie zbyt dużo wiadomości,to-many-messages,3,pl
+Chcę zrezygnować z tego biuletynu,newsletter-unsubscribe,2,pl
+Nie zapisywałem(am) się na takie wiadomości,no-opt-in,1,pl

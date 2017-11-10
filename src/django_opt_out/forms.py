@@ -1,12 +1,18 @@
 # coding=utf-8
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import get_language
 
 from . import models
 
 
+class TranslatedMultipleChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return obj.trans(get_language())
+
+
 class OptOutForm(forms.ModelForm):
-    feedback = forms.ModelMultipleChoiceField(
+    feedback = TranslatedMultipleChoiceField(
         label=_('Please help us provide a better service'),
         widget=forms.CheckboxSelectMultiple,
         queryset=models.OptOutFeedback.objects.all(),

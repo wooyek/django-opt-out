@@ -47,6 +47,9 @@ clean-test: ## remove test and coverage artifacts
 	rm -f .coverage
 	rm -fr htmlcov/
 
+isort:
+	isort --verbose --recursive src tests setup.py
+
 lint: ## check style with flake8
 	flake8 src tests setup.py
 	isort --verbose --check-only --diff --recursive src tests setup.py

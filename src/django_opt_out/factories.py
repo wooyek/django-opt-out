@@ -45,7 +45,7 @@ class OptOutTagValueFactory(factory.DjangoModelFactory):
 
 
 class OptOutFeedbackFactory(factory.DjangoModelFactory):
-    question = factory.Faker('sentence')
+    text = factory.Faker('sentence')
 
     class Meta:
         model = models.OptOutFeedback

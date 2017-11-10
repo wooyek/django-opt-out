@@ -1,0 +1,9 @@
+text,tags,id,slug,default,ordinal
+I wan't to delete my user account,tx,8,account-delete,0,888
+Suppress messages for 1 year,ntx,7,suppress-1y,0,51
+Suppress messages for 6 months,ntx,6,suppress-6m,0,50
+Do not send me any more messages. Ever!,ntx,5,no-messages-ever,0,999
+I want to change notification settings,tx,4,change-notification-settings,1,0
+You send to many messages,,3,to-many-messages,0,0
+I not longer want to subscribe to this newsletter,newsletter,2,newsletter-unsubscribe,0,0
+I did not signed up for this message,,1,no-opt-in,0,0

@@ -5,9 +5,10 @@
 
 import pytest
 from click.testing import CliRunner
+from django.test import TestCase
 
 import django_opt_out
-from django_opt_out import cli
+from django_opt_out import cli, models
 
 django_opt_out.__version__
 
@@ -37,3 +38,12 @@ def test_command_line_interface():
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
+
+
+class SetupDefaultsTests(TestCase):
+    def test_tags(self):
+        from django_opt_out.management.commands.opt_out_feedback_defaults import Command
+        Command().import_all()
+        self.assertEqual(3, models.OptOutTag.objects.count())
+        self.assertEqual(8, models.OptOutFeedback.objects.count())
+        self.assertEqual(8, models.OptOutFeedbackTranslation.objects.count())

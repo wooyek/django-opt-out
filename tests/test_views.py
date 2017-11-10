@@ -6,7 +6,7 @@ from django.test.utils import TestContextDecorator
 from django_powerbank.testing.base import AssertionsMx
 from mock import Mock
 
-from django_opt_out import factories, models, signals
+from django_opt_out import factories, models, signals, views
 from django_opt_out.utils import get_opt_out_url
 
 
@@ -26,6 +26,21 @@ class CaptureSignal(TestContextDecorator):
 
     def disable(self):
         self.signal.connect(self.handler)
+
+
+class OptOutConfirmTests(TestCase):
+    @override_settings(OPT_OUT_GOODBYE_VIEW='mocked_goodbye')
+    def test_overriden_success_url(self):
+        view = views.OptOutConfirm()
+        view.object = factories.OptOutFactory(pk=1, secret='7ebc5d464a6485e4b64f', email='ymoore@hotmail.com')
+        url = view.get_success_url()
+        self.assertEqual('/mocked_goodbye/1/7ebc5d464a6485e4b64f/ymoore@hotmail.com/', url)
+
+    def test_success_url(self):
+        view = views.OptOutConfirm()
+        view.object = factories.OptOutFactory(pk=1, secret='7ebc5d464a6485e4b64f', email='ymoore@hotmail.com')
+        url = view.get_success_url()
+        self.assertEqual('/opt-out/1/7ebc5d464a6485e4b64f/ymoore@hotmail.com', url)
 
 
 class OptOutConfirmGetTests(TestCase, AssertionsMx):

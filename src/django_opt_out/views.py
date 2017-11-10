@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
+from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import resolve_url
 from django.utils import timezone
@@ -64,7 +65,8 @@ class OptOutConfirm(CreateView):
             self.object.tags.create(tag=tag, value=value)
 
     def get_success_url(self):
-        return resolve_url("django_opt_out:OptOutSuccess", self.object.pk, self.object.secret, self.object.email)
+        goodbye_view = settings.OPT_OUT_GOODBYE_VIEW or "django_opt_out:OptOutSuccess"
+        return resolve_url(goodbye_view, pk=self.object.pk, secret=self.object.secret, email=self.object.email)
 
 
 class OptOutBase(AbstractAccessView):

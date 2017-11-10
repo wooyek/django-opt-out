@@ -30,6 +30,7 @@ recursive-include src *.py
 recursive-include src *.css
 recursive-include src *.html
 recursive-include src *.js
+recursive-include src *.csv
 recursive-include src .gitignore
 recursive-include tests *.env
 recursive-include tests *.py
