@@ -56,7 +56,9 @@ Demo
 
 To run an example project for this django reusable app, click the button below and start a demo serwer on Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/wooyek/django-opt-out/)
+.. image:: https://www.herokucdn.com/deploy/button.png
+    :target: https://heroku.com/deploy?template=https://github.com/wooyek/django-opt-out/
+    :alt: Deploy Django Opt-out example project to Heroku
 
 
 Quickstart
