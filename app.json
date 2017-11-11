@@ -37,9 +37,8 @@
       "value": "0"
     }
   },
-//  "scripts": {
-//    "postdeploy": "python example_project/manage.py migrate"
-//  },
+  "scripts": {
+  },
   "formation": {
     "web": {
       "quantity": 1,
