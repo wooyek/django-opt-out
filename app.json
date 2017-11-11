@@ -1,0 +1,26 @@
+{
+  "name": "Django Opt-out application example project",
+  "description": "Allow everybody to unsubscribe your messages, user accounts are not required.",
+  "keywords": [
+    "Python",
+    "Django"
+  ],
+  "website": "https://github.com/wooyek/django-opt-out",
+  "repository": "https://github.com/wooyek/django-opt-out",
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "env": {
+    "SECRET_KEY": {
+      "description": "A secret key for a particular Django installation. This is used to provide cryptographic signing.",
+      "generator": "secret"
+    },
+    "UPGRADE_REQUIREMENTS": {
+      "description": "Controls if a post_compile hook should re-install requirements after initial Heroku performed install",
+      "value": "True"
+    }
+  },
+  "scripts": {
+    "postdeploy": "python example_project/manage.py migrate"
+  }
+}

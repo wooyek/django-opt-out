@@ -13,10 +13,50 @@ Django Opt-out application
         :target: https://django-opt-out.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
+.. image:: https://img.shields.io/coveralls/github/wooyek/django-opt-out.svg
+        :target: https://coveralls.io/github/wooyek/django-opt-out
+        :alt: Coveralls.io coverage
+
+.. image:: https://img.shields.io/codecov/c/github/wooyek/django-opt-out.svg
+        :target: https://codecov.io/gh/wooyek/django-opt-out
+        :alt: CodeCov coverage
+
+.. image:: https://img.shields.io/github/license/wooyek/django-opt-out.svg
+        :target: https://github.com/wooyek/django-opt-out/blob/develop/LICENSE
+        :alt: License
+
+.. image:: https://img.shields.io/twitter/url/https/github.com/wooyek/django-opt-out.svg?style=social
+        :target: https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fwooyek%2Fdjango-opt-out
+        :alt: Tweet about this project
+
 Allow everybody to unsubscribe your messages, user accounts are not required.
 
 * Free software: MIT license
 * Documentation: https://django-opt-out.readthedocs.io.
+
+
+Features
+--------
+
+* A single page form for opt-out feedback submission
+* Feedback options text controlled from django admin
+* Predefined feedback defaults available from django manage command
+* Feedback translations done in django admin
+* Feedback options selection based on tags supplied to the opt-out url
+* Ability to preselect a feedback option
+* Ability to change selected feedback options after submission
+* Ability to set tag:value pair on opt-out url and store them on submission with user feedback
+* Signal to modify opt-out form before rendering
+* Signal on opt-out feedback submission
+* Easily overridable thank you / goodbay view
+* Opt-out form with a easily overridable base template
+
+Demo
+----
+
+To run an example project for this django reusable app, click the button below and start a demo serwer on Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/wooyek/django-opt-out/)
 
 
 Quickstart
@@ -49,10 +89,6 @@ Add Django Opt-out application's URL patterns:
         ...
     ]
 
-Features
---------
-
-* TODO
 
 Running Tests
 -------------
