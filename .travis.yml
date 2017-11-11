@@ -50,6 +50,7 @@ jobs:
 
 after_success:
   - codecov -e TOX_ENV
+  - coveralls
 
 notifications:
   email:
