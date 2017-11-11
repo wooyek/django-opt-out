@@ -16,11 +16,21 @@
       "generator": "secret"
     },
     "UPGRADE_REQUIREMENTS": {
-      "description": "Controls if a post_compile hook should re-install requirements after initial Heroku performed install",
+      "description": "Controls if a post_compile hook should re-install requirements after initial Heroku performed install. This should be True by default.",
       "value": "True"
+    },
+    "DISABLE_COLLECTSTATIC": {
+      "description": "Controls if Heroku should collect any static files. This should be 0 by default.",
+      "value": "0"
     }
   },
   "scripts": {
     "postdeploy": "python example_project/manage.py migrate"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
   }
 }

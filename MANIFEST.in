@@ -15,6 +15,9 @@ include .coveragerc
 include .editorconfig
 include Makefile
 include tox.ini
+include *.json
+include Procfile
+
 
 recursive-include .github *.*
 recursive-include requirements *.*
