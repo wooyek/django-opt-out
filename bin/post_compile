@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# File path should be ./bin/post_compile
+# https://gist.github.com/kylefox/7044491259b6b2586ca1
+
+echo "UPGRADE_REQUIREMENTS: $UPGRADE_REQUIREMENTS"
+
+if [[ "$UPGRADE_REQUIREMENTS" == "True" ]]; then
+    echo "====> Upgrading requirements"
+    pip install -r requirements.txt -U
+
+    # Heroku will ignore example project requirements
+    # thinking that requirements in root folder are the web-app requirements
+    # but they are only django-opt-out requirements and not full example project requirements
+    echo "====> Installing example project requirements"
+    pip install -r example_project/requirements.txt -U
+
+fi
+echo "====> Installed versions"
+pip freeze
+
