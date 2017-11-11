@@ -21,12 +21,19 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('--force', action='store_true', dest='force', default=False, help='Overwrite existing data')
+        parser.add_argument('--on-empty', action='store_true', dest='on_empty', default=False, help='Only if database is emtpy')
 
     def handle(self, *args, **options):
         if not options['force']:
-            assert models.OptOutTag.objects.count() == 0
-            assert models.OptOutFeedback.objects.count() == 0
-            assert models.OptOutFeedbackTranslation.objects.count() == 0
+            try:
+                assert models.OptOutTag.objects.count() == 0
+                assert models.OptOutFeedback.objects.count() == 0
+                assert models.OptOutFeedbackTranslation.objects.count() == 0
+            except AssertionError as ex:
+                if options['on_empty']:
+                    logging.info("Database is not empty. Ignoring import.")
+                    return
+                raise ex
         self.import_all()
 
     def import_all(self):

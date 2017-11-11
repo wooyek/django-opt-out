@@ -8,7 +8,7 @@ from click.testing import CliRunner
 from django.test import TestCase
 
 import django_opt_out
-from django_opt_out import cli, models
+from django_opt_out import cli, models, factories
 
 django_opt_out.__version__
 
@@ -47,3 +47,13 @@ class SetupDefaultsTests(TestCase):
         self.assertEqual(3, models.OptOutTag.objects.count())
         self.assertEqual(8, models.OptOutFeedback.objects.count())
         self.assertEqual(8, models.OptOutFeedbackTranslation.objects.count())
+
+    def test_ignore_call_on_data(self):
+        factories.OptOutTagFactory()
+        from django_opt_out.management.commands.opt_out_feedback_defaults import Command
+        Command().handle(force=False, on_empty=True)
+
+    def test_failt_on_existing_data(self):
+        factories.OptOutTagFactory()
+        from django_opt_out.management.commands.opt_out_feedback_defaults import Command
+        self.assertRaises(AssertionError, Command().handle, force=False, on_empty=False)
