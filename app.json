@@ -1,5 +1,5 @@
 {
-  "name": "Django Opt-out application example project",
+  "name": "Django Opt-out demo",
   "description": "Allow everybody to unsubscribe your messages, user accounts are not required.",
   "keywords": [
     "Python",
