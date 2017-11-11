@@ -32,6 +32,10 @@
       "description": "Controls if a post_compile hook should re-install requirements after initial Heroku performed install. This should be True by default.",
       "value": "True"
     },
+    "AUTO_MIGRATE": {
+      "description": "Run migrate on every deploy or a release.",
+      "value": "True"
+    },
     "DISABLE_COLLECTSTATIC": {
       "description": "Controls if Heroku should collect any static files. This should be 0 by default.",
       "value": "0"
