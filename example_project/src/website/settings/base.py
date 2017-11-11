@@ -64,7 +64,6 @@ if 'ALLOWED_HOSTS' in os.environ and os.environ['ALLOWED_HOSTS'].strip():
     BASE_URL = "https://" + BASE_HOST
     ALLOWED_HOSTS = [host.strip() for host in hosts if host.strip()]
 
-
 SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)
 
 ADMINS = (
@@ -72,8 +71,9 @@ ADMINS = (
 )
 if 'ADMINS' in os.environ:
     from email.utils import getaddresses
+
     admins = os.environ['ALLOWED_HOSTS'].split(";")
-    addreses =getaddresses(admins)
+    addreses = getaddresses(admins)
     ADMINS = [(name, named_email) for ((name, email), named_email) in zip(addreses, admins)]
 
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default="Help <help@{domain}>".format(domain=BASE_DOMAIN))
@@ -81,7 +81,6 @@ HELP_EMAIL = env('HELP_EMAIL', default=DEFAULT_FROM_EMAIL)
 ERR_EMAIL = env('ERR_EMAIL', default="errors@{domain}".format(domain=BASE_DOMAIN))
 SERVER_EMAIL = env('SERVER_EMAIL', default="Errors <errors@{domain}>".format(domain=BASE_DOMAIN))
 EMAIL_SUBJECT_PREFIX = env('EMAIL_SUBJECT_PREFIX', default='[OPT-OUT] ')
-
 
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -104,7 +103,6 @@ else:
     }
 
 logging.debug("DATABASES: %s", DATABASES['default']['NAME'])
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',

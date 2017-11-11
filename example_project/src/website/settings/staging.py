@@ -35,21 +35,4 @@ if evironment_config.exists():
     environ.Env.read_env(str(evironment_config))
 
 # noinspection PyUnresolvedReferences
-from .base import *
-
-LOGGING['handlers']['console']['formatter'] = 'heroku'
-LOGGING['handlers']['file'] = {
-    'class': 'logging.handlers.RotatingFileHandler',
-    'formatter': 'verbose',
-    'backupCount': 3,
-    'maxBytes': 4194304,  # 4MB
-    'level': 'DEBUG',
-    'filename': str(BASE_DIR / 'logs' / 'website.log'),
-}
-LOGGING['root']['handlers'].append('file')
-
-log_file = Path(LOGGING['handlers']['file']['filename'])
-if not log_file.parent.exists():  # pragma: no cover
-    logging.info("Creating log directory: {}".format(log_file.parent))
-    Path(log_file).parent.mkdir(parents=True)
-
+from .base import *  # noqa: F402, F403, F401
