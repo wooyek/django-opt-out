@@ -13,11 +13,11 @@ Django Opt-out application
         :target: https://django-opt-out.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://img.shields.io/coveralls/github/wooyek/django-opt-out.svg
-        :target: https://coveralls.io/github/wooyek/django-opt-out
+.. image:: https://coveralls.io/repos/github/wooyek/django-opt-out/badge.svg?branch=develop
+        :target: https://coveralls.io/github/wooyek/django-opt-out?branch=develop
         :alt: Coveralls.io coverage
 
-.. image:: https://img.shields.io/codecov/c/github/wooyek/django-opt-out.svg
+.. image:: https://codecov.io/gh/wooyek/django-opt-out/branch/develop/graph/badge.svg
         :target: https://codecov.io/gh/wooyek/django-opt-out
         :alt: CodeCov coverage
 

@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Django server for example project" type="Python.DjangoServer" factoryName="Django server" singleton="true">
+  <configuration default="false" name="Django server for example project ~ local settings" type="Python.DjangoServer" factoryName="Django server" singleton="true">
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
     <envs>
+      <env name="DJANGO_SETTINGS_MODULE" value="website.settings.local" />
       <env name="PYTHONUNBUFFERED" value="1" />
-      <env name="DJANGO_SETTINGS_MODULE" value="src.website.settings" />
     </envs>
     <option name="SDK_HOME" value="$USER_HOME$/.virtualenvs/django-opt-out/bin/python" />
     <option name="WORKING_DIRECTORY" value="" />

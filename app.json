@@ -15,6 +15,18 @@
       "description": "A secret key for a particular Django installation. This is used to provide cryptographic signing.",
       "generator": "secret"
     },
+    "DEBUG": {
+      "description": "Leave DEBUG on for demo purposes. Set it to False to secure your app from the first start.",
+      "value": "True"
+    },
+    "ALLOWED_HOSTS": {
+      "description": "Domain names this is working under, first one will be used as a base for emails used in settings",
+      "value": ""
+    },
+    "EMAIL_URL": {
+      "description": "SMTP setting in the form of smtp+tls://user:password@hostname.com:587",
+      "value": ""
+    },
     "UPGRADE_REQUIREMENTS": {
       "description": "Controls if a post_compile hook should re-install requirements after initial Heroku performed install. This should be True by default.",
       "value": "True"
