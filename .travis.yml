@@ -17,7 +17,7 @@ before_install:
   - sudo apt-get install -y git-flow
 
 install:
-  - pip install -r requirements/local.txt
+  - pip install -r requirements/local.txt coveralls
   - virtualenv --version
   - easy_install --version
   - pip --version
