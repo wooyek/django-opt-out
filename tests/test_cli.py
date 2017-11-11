@@ -8,7 +8,7 @@ from click.testing import CliRunner
 from django.test import TestCase
 
 import django_opt_out
-from django_opt_out import cli, models, factories
+from django_opt_out import cli, factories, models
 
 django_opt_out.__version__
 
