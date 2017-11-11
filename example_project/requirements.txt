@@ -8,3 +8,4 @@
 # This example requirements that are not already included in the app requirements
 django
 django-environ
+gunicorn
