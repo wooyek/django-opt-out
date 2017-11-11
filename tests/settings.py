@@ -43,7 +43,7 @@ SECRET_KEY = env('SECRET_KEY')
 DATABASES = {}
 
 if "DATABASE_URL" in os.environ:  # pragma: no cover
-    DATABASES['default'] = env.db(),
+    DATABASES['default'] = env.db()
     DATABASES['default']['TEST'] = {'NAME': env("DATABASE_TEST_NAME", default=None)}
     DATABASES['default']['OPTIONS'] = {
         'options': '-c search_path=gis,public,pg_catalog',

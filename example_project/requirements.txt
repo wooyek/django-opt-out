@@ -9,4 +9,3 @@
 django
 django-environ
 gunicorn
-
