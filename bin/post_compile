@@ -14,7 +14,8 @@ if [[ "$UPGRADE_REQUIREMENTS" == "True" ]]; then
     # thinking that requirements in root folder are the web-app requirements
     # but they are only django-opt-out requirements and not full example project requirements
     echo "====> Installing example project requirements"
-    pip install -r example_project/requirements.txt -U
+    cd example_project && pip install -r requirements.txt -U
+    pwd
 
 fi
 echo "====> Installed versions"
