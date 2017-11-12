@@ -1,36 +1,35 @@
 [[source]]
 
 name = "pypi"
-url = "https://pypi.python.org/simple"
 verify_ssl = true
+url = "https://pypi.python.org/simple"
 
 
 [packages]
 
+django = "*"
 django-bootstrap-form = "*"
-Django = "*"
-django-betterforms = "*"
-django-environ = "*"
-django-formtools = "*"
 django-import-export = "*"
-django-localflavor = "*"
 django-pascal-templates = "*"
-django-polymodels = "*"
 django-powerbank = "*"
-django-reversion = "*"
-django-email-queue = "*"
-"html2text" = "*"
-isoweek = "*"
-"jinja2-highlight" = "*"
-Markdown = "*"
-maya = "*"
+markdown = "*"
 pathlib = "*"
-"psycopg2" = "*"
-pycountry = "*"
-pytz = "*"
-raven = "*"
-requests = "*"
 
 
 [dev-packages]
 
+django = "*"
+django-bootstrap-form = "*"
+django-import-export = "*"
+django-pascal-templates = "*"
+django-powerbank = "*"
+markdown = "*"
+pathlib = "*"
+mock = "*"
+pytest = "*"
+pytest-xdist = "*"
+pytest-html = "*"
+pytest-django = "*"
+factory-boy = "*"
+"psycopg2" = "*"
+django-environ = "*"

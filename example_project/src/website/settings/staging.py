@@ -21,16 +21,19 @@ logging.disable(logging.NOTSET)
 
 logging.debug("Settings loading: %s" % __file__)
 
-print("╭──────────────────────────╮")
-print("│ Loading staging settings │")
-print("╰──────────────────────────╯")
+name = __name__.split('.')[-1].upper()
+print("""
+╭─────────{border}──────────╮
+│ Loading {name} settings │
+╰─────────{border}──────────╯
+""".format(name=name, border='─'*len(name)))
 
 # Set defaults for when env file is not present.
 os.environ.update(DEBUG='False', ASSETS_DEBUG='False')
 
 # This will read missing environment variables from a file
 # We want to do this before loading any base settings as they may depend on environment
-evironment_config = Path(__file__).parent / "staging.env"
+evironment_config = Path(__file__).with_suffix('.env')
 if evironment_config.exists():
     environ.Env.read_env(str(evironment_config))
 

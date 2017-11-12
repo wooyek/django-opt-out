@@ -10,7 +10,7 @@
 # Tooling
 -r tooling.txt
 
-# Documentaion
+# Documentation
 -r ../docs/requirements.txt
 
 

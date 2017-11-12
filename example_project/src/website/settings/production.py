@@ -21,9 +21,12 @@ logging.disable(logging.NOTSET)
 
 logging.debug("Settings loading: %s" % __file__)
 
-print("╔═════════════════════════════╗")
-print("║ LOADING PRODUCTION SETTINGS ║")
-print("╚═════════════════════════════╝")
+print ("""
+╔═════════════════════════════╗
+║ LOADING PRODUCTION SETTINGS ║
+╚═════════════════════════════╝
+""")
+
 
 # Set defaults for when env file is not present.
 os.environ.update(DEBUG='False', ASSETS_DEBUG='False')

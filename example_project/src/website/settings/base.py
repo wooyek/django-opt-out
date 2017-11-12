@@ -214,11 +214,6 @@ LOGGING = {
             'email_backend': 'django.core.mail.backends.smtp.EmailBackend',
             'class': 'django.utils.log.AdminEmailHandler',
         },
-        'sentry': {
-            'level': 'ERROR',  # To capture more than ERROR, change to WARNING, INFO, etc.
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-            'tags': {'custom-tag': 'x'},
-        },
     },
     'loggers': {
         'django.template': {
@@ -279,11 +274,6 @@ LOGGING = {
         #     'handlers': [],
         #     'propagate': False,
         # },
-        'raven': {
-            'level': 'INFO',
-            'handlers': ['console'],
-            'propagate': False,
-        },
     },
     'root': {
         'level': 'DEBUG',
@@ -298,3 +288,4 @@ if env('MAIL_ADMINS_ON_ERROR', bool, default=True):
         'level': 'ERROR',
         'propagate': True,
     }
+

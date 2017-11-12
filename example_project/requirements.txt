@@ -10,3 +10,4 @@
 django
 django-environ
 gunicorn
+psycopg2
