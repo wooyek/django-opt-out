@@ -6,6 +6,8 @@ echo "UPGRADE_REQUIREMENTS: $UPGRADE_REQUIREMENTS"
 
 if [[ "$UPGRADE_REQUIREMENTS" == "True" ]]; then
     echo "====> Upgrading requirements"
+    pwd
+    ls -la
     pip install -r requirements.txt -U
 
     # Heroku will ignore example project requirements
