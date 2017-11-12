@@ -4,3 +4,5 @@ pytest-xdist
 pytest-html
 pytest-django
 factory-boy
+psycopg2
+django-environ

@@ -10,7 +10,7 @@ if [[ "$UPGRADE_REQUIREMENTS" == "True" ]]; then
     ls -la
     pip install -r requirements.txt -U
 
-    # Heroku will ignore example project requirements
+    # Herokexample_projectu will ignore example project requirements
     # thinking that requirements in root folder are the web-app requirements
     # but they are only django-opt-out requirements and not full example project requirements
     echo "====> Installing example project requirements"

@@ -36,7 +36,7 @@ recursive-include src *.html
 recursive-include src *.js
 recursive-include src *.csv
 recursive-include src .gitignore
-recursive-include bin *.*
+recursive-include bin * *.*
 recursive-include tests *.env
 recursive-include tests *.py
 recursive-exclude * __pycache__

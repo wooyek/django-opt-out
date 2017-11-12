@@ -48,7 +48,7 @@ Features
 * Ability to set tag:value pair on opt-out url and store them on submission with user feedback
 * Signal to modify opt-out form before rendering
 * Signal on opt-out feedback submission
-* Easily overridable thank you / goodbay view
+* Easily overridable thank you / goodbye view
 * Opt-out form with a easily overridable base template
 
 Demo

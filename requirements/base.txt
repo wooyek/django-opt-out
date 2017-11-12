@@ -2,26 +2,10 @@
 # For development we keep them unfreezed to work and test on newest versions as soon as they are released
 
 # Here are some popular dependencies
-django-bootstrap-form
 django
-django-betterforms
-django-environ
-django-formtools
+django-bootstrap-form
 django-import-export
-django-localflavor
 django-pascal-templates
-django-polymodels
 django-powerbank
-django-reversion
-django_email_queue
-html2text
-isoweek
-jinja2-highlight
 markdown
-maya
 pathlib
-psycopg2
-pycountry
-pytz
-raven
-requests

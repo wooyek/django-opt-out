@@ -1,11 +1,12 @@
-# Your app requirements and the app in editable mode..
--r ../requirements/local.txt
--e ../
-
-# This example in editable mode
+# Install django-opt-out in editable mode, it's requirements for local development
+# and this example in editable mode
+# NOTE: paths are realative to CWD and not this file parent folder
+# Running pip install -r example_project/requiremenst.txt
+-e ..
 -e .
+-r ../requirements/local.txt
 
-# This example requirements that are not already included in the app requirements
+# This example requirements that may not not be already included in the app requirements
 django
 django-environ
 gunicorn
