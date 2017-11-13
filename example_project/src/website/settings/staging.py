@@ -26,7 +26,7 @@ print("""
 ╭─────────{border}──────────╮
 │ Loading {name} settings │
 ╰─────────{border}──────────╯
-""".format(name=name, border='─'*len(name)))
+""".format(name=name, border='─' * len(name)))
 
 # Set defaults for when env file is not present.
 os.environ.update(DEBUG='False', ASSETS_DEBUG='False')

@@ -288,4 +288,3 @@ if env('MAIL_ADMINS_ON_ERROR', bool, default=True):
         'level': 'ERROR',
         'propagate': True,
     }
-
