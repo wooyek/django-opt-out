@@ -6,7 +6,7 @@ echo "UPGRADE_REQUIREMENTS: $UPGRADE_REQUIREMENTS"
 
 if [[ "$UPGRADE_REQUIREMENTS" == "True" ]]; then
     echo "====> Installing python-enchant with apt"
-    sudo apt-get install -y python-enchant
+    apt-get install -y python-enchant
 
     echo "====> Upgrading requirements"
     pwd
