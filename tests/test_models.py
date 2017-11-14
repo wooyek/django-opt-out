@@ -14,7 +14,7 @@ from django_powerbank.testing import MigrationsCheck
 from mock import patch
 from six.moves.urllib.parse import quote_plus
 
-from django_opt_out import factories, models
+from django_opt_out import factories
 from django_opt_out.utils import get_opt_out_url, get_password, validate_password
 
 
@@ -68,3 +68,16 @@ class PasswordTests(SimpleTestCase):
         email = "foo@bar.com"
         encoded = get_password(email)
         self.assertTrue(validate_password(email, encoded))
+
+
+class OptOutFeedbackTest(TestCase):
+    def test_trans_fallback(self):
+        item = factories.OptOutFeedbackFactory()
+        self.assertEqual(item.text, item.trans())
+
+    def test_trans(self):
+        text = 'Zażółć gęślą jaźń'
+        item = factories.OptOutFeedbackTranslationFactory(text=text).feedback
+        trans = item.trans('pl')
+        self.assertEqual(text, trans)
+        self.assertNotEqual(item.text, trans)

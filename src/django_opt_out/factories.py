@@ -59,3 +59,13 @@ class OptOutFeedbackFactory(factory.DjangoModelFactory):
         if extracted:
             # A list of groups were passed in, use them
             self.tags.add(*extracted)
+
+
+class OptOutFeedbackTranslationFactory(factory.DjangoModelFactory):
+    feedback = factory.SubFactory(OptOutFeedbackFactory)
+    language = 'pl'
+    text = factory.Faker('sentence')
+
+    class Meta:
+        model = models.OptOutFeedbackTranslation
+
