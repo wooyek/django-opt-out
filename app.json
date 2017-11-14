@@ -42,6 +42,7 @@
     }
   },
   "scripts": {
+    "postdeploy": "bin/post_deploy"
   },
   "formation": {
     "web": {

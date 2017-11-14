@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
+from django.conf import settings, global_settings
 from django.db import models
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
@@ -44,7 +44,7 @@ class OptOutFeedback(BaseModel):
 
 class OptOutFeedbackTranslation(BaseModel):
     feedback = models.ForeignKey(OptOutFeedback, on_delete=models.CASCADE)
-    language = models.CharField(max_length=5, choices=settings.LANGUAGES)
+    language = models.CharField(max_length=5, choices=global_settings.LANGUAGES)
     text = models.CharField(verbose_name=_('question'), max_length=250)
 
     class Meta:

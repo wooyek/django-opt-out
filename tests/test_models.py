@@ -7,13 +7,20 @@ test_django-opt-out
 
 Tests for `django-opt-out` models module.
 """
+import pytest
 from django.test import SimpleTestCase, TestCase
 from django.test.utils import override_settings
+from django_powerbank.testing import MigrationsCheck
 from mock import patch
 from six.moves.urllib.parse import quote_plus
 
 from django_opt_out import factories, models
 from django_opt_out.utils import get_opt_out_url, get_password, validate_password
+
+
+@pytest.mark.django_db
+class MigrationsCheckTests(MigrationsCheck):
+    pass
 
 
 @override_settings(OUT_OUT_REQUIRE_CONFIRMATION=False)
@@ -61,12 +68,3 @@ class PasswordTests(SimpleTestCase):
         email = "foo@bar.com"
         encoded = get_password(email)
         self.assertTrue(validate_password(email, encoded))
-
-
-class TestDjangooptout(TestCase):
-    def test_something(self):
-        self.assertIsNotNone(models)
-
-    def test_user_factory(self):
-        user = factories.UserFactory()
-        self.assertIsNotNone(user)

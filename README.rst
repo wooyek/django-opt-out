@@ -29,6 +29,9 @@ Django Opt-out application
         :target: https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fwooyek%2Fdjango-opt-out
         :alt: Tweet about this project
 
+.. image:: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
+        :target: https://saythanks.io/to/wooyek
+
 Allow everybody to unsubscribe your messages, user accounts are not required.
 
 * Free software: MIT license
