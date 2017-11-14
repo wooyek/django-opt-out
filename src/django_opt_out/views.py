@@ -31,10 +31,13 @@ class OptOutConfirm(CreateView):
         return self.request.GET.dict()
 
     def get_form(self, form_class=None):
-        form = super().get_form(form_class)
+        form = super(OptOutConfirm, self).get_form(form_class)
         feedback = form.fields['feedback']
-        tags = dict(self.get_tags()).keys()
-        feedback.queryset = feedback.queryset.filter(Q(tags__name__in=tags) | Q(tags__isnull=True))
+        tags = dict(self.get_tags())
+        tags_filter = Q(tags__name__in=tags.keys())
+        if tags.get('default', True) in (True, None, '', '1', 'True', 'true', 'on'):
+            tags_filter |= Q(tags__isnull=True)
+        feedback.queryset = feedback.queryset.filter(tags_filter)
         feedback.initial = list(feedback.queryset.filter(default=True).values_list('pk', flat=True))
         if self.email_confirmed():
             form.instance.confirmed = timezone.now()
@@ -44,9 +47,10 @@ class OptOutConfirm(CreateView):
     def get_context_data(self, **kwargs):
         kwargs['tags'] = self.get_tags()
         opt_out_visited.send_robust(self.__class__, view=self, request=self.request, context=kwargs)
-        return super().get_context_data(**kwargs)
+        return super(OptOutConfirm, self).get_context_data(**kwargs)
 
     def form_valid(self, form):
+        # noinspection PyAttributeOutsideInit
         self.object = form.save()
         self.save_tags()
         opt_out_submitted.send_robust(self.__class__, view=self, request=self.request, opt_out=self.object)
@@ -91,7 +95,7 @@ class OptOutUpdate(OptOutBase, UpdateView):
     template_name = "django_opt_out/OptOut/form.html"
 
     def get_form(self, form_class=None):
-        form = super().get_form(form_class)
+        form = super(OptOutUpdate, self).get_form(form_class)
         feedback = form.fields['feedback']
         tags = self.object.tags.all().values_list('tag__pk', flat=True)
         feedback.queryset = feedback.queryset.filter(Q(tags__in=tags) | Q(tags__isnull=True))

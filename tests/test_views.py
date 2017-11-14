@@ -1,7 +1,7 @@
 # coding=utf-8
 from django import test
 from django.shortcuts import resolve_url
-from django.test import TestCase, override_settings
+from django.test import TestCase, override_settings, RequestFactory
 from django.test.utils import TestContextDecorator
 from django_powerbank.testing.base import AssertionsMx
 from mock import Mock
@@ -104,6 +104,52 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
         initial = response.context_data['form'].fields['feedback'].initial
         self.assertEqual([f.pk for f in feedback], initial)
 
+    def test_default_feedback(self):
+        feedback = factories.OptOutFeedbackFactory.create_batch(3, default=True)
+        request = RequestFactory().get('/', data={'tag': 'default'})
+        view = views.OptOutConfirm(request=request)
+        form = view.get_form()
+        items = list(form.fields['feedback'].queryset)
+        self.assertEqual(set(feedback), set(items))
+
+    def test_default_feedback_on(self):
+        feedback = factories.OptOutFeedbackFactory.create_batch(3, default=True)
+        request = RequestFactory().get('/', data={'tag': 'default:on'})
+        view = views.OptOutConfirm(request=request)
+        form = view.get_form()
+        items = list(form.fields['feedback'].queryset)
+        self.assertEqual(set(feedback), set(items))
+
+    def test_default_feedback_true(self):
+        feedback = factories.OptOutFeedbackFactory.create_batch(3, default=True)
+        request = RequestFactory().get('/', data={'tag': 'default:true'})
+        view = views.OptOutConfirm(request=request)
+        form = view.get_form()
+        items = list(form.fields['feedback'].queryset)
+        self.assertEqual(set(feedback), set(items))
+
+    def test_default_feedback_True(self):
+        feedback = factories.OptOutFeedbackFactory.create_batch(3, default=True)
+        request = RequestFactory().get('/', data={'tag': 'default:True'})
+        view = views.OptOutConfirm(request=request)
+        form = view.get_form()
+        items = list(form.fields['feedback'].queryset)
+        self.assertEqual(set(feedback), set(items))
+
+    def test_default_feedback_1(self):
+        feedback = factories.OptOutFeedbackFactory.create_batch(3, default=True)
+        request = RequestFactory().get('/', data={'tag': 'default:1'})
+        view = views.OptOutConfirm(request=request)
+        form = view.get_form()
+        items = list(form.fields['feedback'].queryset)
+        self.assertEqual(set(feedback), set(items))
+
+    def test_default_feedback_0(self):
+        factories.OptOutFeedbackFactory.create_batch(3, default=True)
+        request = RequestFactory().get('/', data={'tag': 'default:0'})
+        view = views.OptOutConfirm(request=request)
+        form = view.get_form()
+        self.assertEqual(0, form.fields['feedback'].queryset.count())
 
 class OptOutConfirmPostTests(TestCase, AssertionsMx):
     @CaptureSignal(signals.opt_out_submitted)
