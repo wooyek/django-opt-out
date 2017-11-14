@@ -109,7 +109,7 @@ sync: ## Sync master and develop branches in both directions
 bump: ## increment version number
 	bumpversion patch
 
-release: sync test-all bump publish ## package and upload a release
+release: sync test-all bump publish ## build and test new package release then upload to pypi
 	git checkout develop
 	git merge master --verbose
 	git push origin develop --verbose
