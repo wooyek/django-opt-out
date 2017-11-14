@@ -10,7 +10,7 @@ Tests for `django-opt-out` models module.
 import pytest
 from django.test import SimpleTestCase, TestCase
 from django.test.utils import override_settings
-from django_powerbank.testing import MigrationsCheck
+from django_powerbank.testing import MigrationsCheckMx
 from mock import patch
 from six.moves.urllib.parse import quote_plus
 
@@ -19,7 +19,7 @@ from django_opt_out.utils import get_opt_out_url, get_password, validate_passwor
 
 
 @pytest.mark.django_db
-class MigrationsCheckTests(MigrationsCheck):
+class MigrationsCheckTests(MigrationsCheckMx, TestCase):
     pass
 
 
