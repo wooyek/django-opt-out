@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings, global_settings
+from django.conf import global_settings
 from django.db import models
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _

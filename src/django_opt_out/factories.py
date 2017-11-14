@@ -68,4 +68,3 @@ class OptOutFeedbackTranslationFactory(factory.DjangoModelFactory):
 
     class Meta:
         model = models.OptOutFeedbackTranslation
-
