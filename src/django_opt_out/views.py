@@ -3,14 +3,17 @@ import logging
 
 from django.conf import settings
 from django.db.models import Q
-from django.shortcuts import resolve_url
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import resolve_url, redirect
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import ModelFormMixin
 from django_powerbank.views import Http403
 from django_powerbank.views.auth import AbstractAccessView
 from pascal_templates.views import CreateView, DetailView, UpdateView
 
+from django_opt_out.signals import opt_out_deleted
 from . import forms, models
 from .signals import opt_out_submitted, opt_out_visited
 from .utils import validate_password
@@ -87,6 +90,16 @@ class OptOutBase(AbstractAccessView):
 class OptOutSuccess(OptOutBase, DetailView):
     model = models.OptOut
     template_name = "django_opt_out/OptOut/success.html"
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        opt_out_deleted.send_robust(self.__class__, view=self, request=self.request, opt_out=self.object)
+        return redirect('django_opt_out:OptOutRemoved')
+
+
+class OptOutRemoved(TemplateView):
+    template_name = "django_opt_out/OptOut/removed.html"
 
 
 class OptOutUpdate(OptOutBase, UpdateView):

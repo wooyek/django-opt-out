@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^opt-out$', v.OptOutConfirm.as_view(), name='OptOutConfirm'),
     url(r'^opt-out/(?P<pk>[\d]+)/(?P<secret>[\w]+)/(?P<email>[^/]+)$', v.OptOutSuccess.as_view(), name='OptOutSuccess'),
     url(r'^opt-out/(?P<pk>[\d]+)/(?P<secret>[\w]+)/(?P<email>[^/]+)/update$', v.OptOutUpdate.as_view(), name='OptOutUpdate'),
+    url(r'^opt-out/removed$', v.OptOutRemoved.as_view(), name='OptOutRemoved'),
 ]

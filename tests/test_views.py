@@ -1,7 +1,7 @@
 # coding=utf-8
 from django import test
 from django.shortcuts import resolve_url
-from django.test import TestCase, override_settings, RequestFactory
+from django.test import RequestFactory, TestCase, override_settings
 from django.test.utils import TestContextDecorator
 from django_powerbank.testing.base import AssertionsMx
 from mock import Mock
@@ -151,6 +151,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
         form = view.get_form()
         self.assertEqual(0, form.fields['feedback'].queryset.count())
 
+
 class OptOutConfirmPostTests(TestCase, AssertionsMx):
     @CaptureSignal(signals.opt_out_submitted)
     def test_just_email(self, handler):
@@ -284,3 +285,14 @@ class OptOutUpdatePostTests(TestCase, AssertionsMx):
         response = test.Client().post(url, data={'email': item.email})
         self.assertNoFormErrors(response)
         self.assertRedirects(response, resolve_url("django_opt_out:OptOutSuccess", item.pk, item.secret, item.email))
+
+
+class OptOutSuccessTests(TestCase, AssertionsMx):
+    @CaptureSignal(signals.opt_out_deleted)
+    def test_post(self, handler):
+        item = factories.OptOutFactory()
+        url = resolve_url("django_opt_out:OptOutSuccess", item.pk, item.secret, item.email)
+        response = test.Client().post(url)
+        self.assertNoFormErrors(response)
+        self.assertRedirects(response, resolve_url("django_opt_out:OptOutRemoved"))
+        self.assertTrue(handler.called)
