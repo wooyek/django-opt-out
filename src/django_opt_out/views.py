@@ -3,8 +3,7 @@ import logging
 
 from django.conf import settings
 from django.db.models import Q
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import resolve_url, redirect
+from django.shortcuts import redirect, resolve_url
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import TemplateView
@@ -13,9 +12,8 @@ from django_powerbank.views import Http403
 from django_powerbank.views.auth import AbstractAccessView
 from pascal_templates.views import CreateView, DetailView, UpdateView
 
-from django_opt_out.signals import opt_out_deleted
 from . import forms, models
-from .signals import opt_out_submitted, opt_out_visited
+from .signals import opt_out_deleted, opt_out_submitted, opt_out_visited
 from .utils import validate_password
 
 
