@@ -21,6 +21,10 @@ Django Opt-out application
         :target: https://codecov.io/gh/wooyek/django-opt-out
         :alt: CodeCov coverage
 
+.. image:: https://api.codeclimate.com/v1/badges/0e7992f6259bc7fd1a1a/maintainability
+        :target: https://codeclimate.com/github/wooyek/django-opt-out/maintainability
+        :alt: Maintainability
+
 .. image:: https://img.shields.io/github/license/wooyek/django-opt-out.svg
         :target: https://github.com/wooyek/django-opt-out/blob/develop/LICENSE
         :alt: License
