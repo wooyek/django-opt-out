@@ -38,7 +38,7 @@ sphinx_rtd_theme = "*"
 docutils = "==0.13.1"
 sphinxcontrib-spelling = "*"
 pyenchant = "*"
-
+"dRWm0dFI" = {path = ".", editable = true}
 
 [packages]
 

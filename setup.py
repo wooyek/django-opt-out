@@ -80,7 +80,7 @@ setup(
     url='https://github.com/wooyek/django-opt-out',
     packages=find_packages('src', exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     package_dir={'': 'src'},
-    py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
+    py_modules=[splitext(basename(path))[0] for path in glob('src/!(test*).py')],
     entry_points={
         'console_scripts': [
             'django_opt_out=django_opt_out.cli:main'
