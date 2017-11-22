@@ -7,6 +7,8 @@ Subpackages
 .. toctree::
 
     django_opt_out.migrations
+    django_opt_out.plugins
+    django_opt_out.tests
 
 Submodules
 ----------
@@ -63,6 +65,14 @@ django\_opt\_out\.models module
 -------------------------------
 
 .. automodule:: django_opt_out.models
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+django\_opt\_out\.resources module
+----------------------------------
+
+.. automodule:: django_opt_out.resources
     :members:
     :undoc-members:
     :show-inheritance:

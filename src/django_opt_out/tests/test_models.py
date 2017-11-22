@@ -3,7 +3,7 @@
 
 """
 test_django-opt-out
-------------
+-------------------
 
 Tests for `django-opt-out` models module.
 """
