@@ -7,12 +7,12 @@ env:
   - TOXENV=py34-django-110
   - TOXENV=py35-django-110
   - TOXENV=py36-django-110
-  - TOXENV=py34-django-20
-  - TOXENV=py35-django-20
-  - TOXENV=py36-django-20
-  - TOXENV=py34-django-master
-  - TOXENV=py35-django-master
-  - TOXENV=py36-django-master
+#  - TOXENV=py34-django-20
+#  - TOXENV=py35-django-20
+#  - TOXENV=py36-django-20
+#  - TOXENV=py34-django-master
+#  - TOXENV=py35-django-master
+#  - TOXENV=py36-django-master
 
 matrix:
   fast_finish: true
