@@ -30,7 +30,7 @@ logging.debug("Settings loading: %s" % __file__)
 
 BASE_DIR = Path(__file__).parents[0]
 
-environ.Env.read_env(Path(__file__).with_suffix('.env'))
+environ.Env.read_env(str(Path(__file__).with_suffix('.env')))
 env = environ.Env()
 
 DEBUG = True
