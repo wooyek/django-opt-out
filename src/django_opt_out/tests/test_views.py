@@ -4,7 +4,7 @@ from django.shortcuts import resolve_url
 from django.test import RequestFactory, TestCase, override_settings
 from django.test.utils import TestContextDecorator
 from django_powerbank.testing.base import AssertionsMx
-from mock import Mock
+from mock import Mock, patch
 
 from django_opt_out import factories, models, signals, views
 from django_opt_out.utils import get_opt_out_url
@@ -152,6 +152,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
         self.assertEqual(0, form.fields['feedback'].queryset.count())
 
 
+@patch('django_opt_out.plugins.sparkpost.hooks.client.suppression_list.create', Mock())
 class OptOutConfirmPostTests(TestCase, AssertionsMx):
     @CaptureSignal(signals.opt_out_submitted)
     def test_just_email(self, handler):
@@ -287,6 +288,7 @@ class OptOutUpdatePostTests(TestCase, AssertionsMx):
         self.assertRedirects(response, resolve_url("django_opt_out:OptOutSuccess", item.pk, item.secret, item.email))
 
 
+@patch('django_opt_out.plugins.sparkpost.hooks.client.suppression_list.delete', Mock())
 class OptOutSuccessTests(TestCase, AssertionsMx):
     @CaptureSignal(signals.opt_out_deleted)
     def test_post(self, handler):

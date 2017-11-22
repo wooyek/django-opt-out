@@ -7,8 +7,6 @@ import os
 import re
 import sys
 import uuid
-from glob import glob
-from os.path import basename, splitext
 
 from pip.req import parse_requirements
 
@@ -80,16 +78,21 @@ setup(
     url='https://github.com/wooyek/django-opt-out',
     packages=find_packages('src', exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     package_dir={'': 'src'},
-    py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
+    # py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
     entry_points={
         'console_scripts': [
             'django_opt_out=django_opt_out.cli:main'
         ]
     },
     include_package_data=True,
+    exclude_package_data={
+        '': ['test*.py', 'tests/*.env', '**/tests.py'],
+    },
+    python_requires='>=3.4',
     install_requires=[str(r.req) for r in install_requires] + ['Django>=1.10'],
     extras_require={
         'factories': ['factory-boy'],
+        'sparkpost': ['sparkpost'],
     },
     license="MIT license",
     zip_safe=False,
