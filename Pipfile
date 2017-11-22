@@ -1,19 +1,8 @@
 [[source]]
 
-name = "pypi"
 verify_ssl = true
+name = "pypi"
 url = "https://pypi.python.org/simple"
-
-
-[packages]
-
-Django = "*"
-django-bootstrap-form = "*"
-django-import-export = "*"
-django-pascal-templates = "*"
-django-powerbank = "*"
-Markdown = "*"
-pathlib = "*"
 
 
 [dev-packages]
@@ -25,6 +14,7 @@ django-pascal-templates = "*"
 django-powerbank = "*"
 Markdown = "*"
 pathlib = "*"
+sparkpost = "*"
 mock = "*"
 pytest = "*"
 pytest-xdist = "*"
@@ -43,3 +33,19 @@ isort = "*"
 Pygments = "*"
 readme_renderer = "*"
 tox = "*"
+Sphinx = ">=1.6.5"
+sphinx_rtd_theme = "*"
+docutils = "==0.13.1"
+sphinxcontrib-spelling = "*"
+pyenchant = "*"
+
+
+[packages]
+
+Django = "*"
+django-bootstrap-form = "*"
+django-import-export = "*"
+django-pascal-templates = "*"
+django-powerbank = "*"
+Markdown = "*"
+pathlib = "*"

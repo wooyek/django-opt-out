@@ -109,6 +109,9 @@ sync: ## Sync master and develop branches in both directions
 bump: ## increment version number
 	bumpversion patch
 
+upgrade: ## upgrade frozen requirements to the latest version
+	pipenv lock --requirements > requirements.txt
+
 release: sync test-all bump publish ## build and test new package release then upload to pypi
 	git checkout develop
 	git merge master --verbose
