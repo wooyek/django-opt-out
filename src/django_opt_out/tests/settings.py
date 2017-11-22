@@ -11,7 +11,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Before go-live check if your settings are suitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 """
 
 from __future__ import absolute_import, unicode_literals
@@ -28,10 +28,9 @@ logging.disable(logging.NOTSET)
 
 logging.debug("Settings loading: %s" % __file__)
 
-# Project root folder
 BASE_DIR = Path(__file__).parents[0]
 
-environ.Env.read_env(str(BASE_DIR / 'testing.env'))
+environ.Env.read_env(Path(__file__).with_suffix('.env'))
 env = environ.Env()
 
 DEBUG = True
