@@ -51,7 +51,7 @@ isort:
 	isort --verbose --recursive src tests setup.py
 
 lint: ## check style with flake8
-	flake8 src tests setup.py
+	flake8 src tests setup.py manage.py
 	isort --verbose --check-only --diff --recursive src tests setup.py
 	python setup.py check --strict --metadata --restructuredtext
 	check-manifest  --ignore .idea,.idea/* .

@@ -19,7 +19,6 @@ include *.json
 include Procfile
 include .env Pipfile Pipfile.lock
 
-
 recursive-include .github *.*
 recursive-include requirements *.*
 recursive-include src *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
@@ -38,6 +37,8 @@ recursive-include src *.csv
 recursive-include src .gitignore
 recursive-include src *.env
 recursive-include bin * *.*
+recursive-include tests *.env
+recursive-include tests *.py
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 recursive-exclude * .eggs .tox .tmp
