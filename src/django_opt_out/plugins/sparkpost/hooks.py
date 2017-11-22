@@ -1,10 +1,13 @@
 # coding=utf-8
 import logging
 
+import sparkpost
+from django.conf import settings
 from django.dispatch import receiver
+from django.utils.functional import SimpleLazyObject
 from sparkpost.exceptions import SparkPostAPIException
 
-from . import client, signals
+from . import signals
 from ... import signals as opt_out
 
 log = logging.getLogger(__name__)
@@ -37,3 +40,10 @@ def remove_suppression(sender, view, request, opt_out, **kwargs):
     except SparkPostAPIException as ex:
         if ex.status != 404:
             raise ex
+
+
+def get_client(setting='SPARKPOST_API_KEY'):
+    return sparkpost.SparkPost(getattr(settings, setting, None))
+
+
+client = SimpleLazyObject(get_client)

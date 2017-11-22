@@ -74,7 +74,7 @@ INSTALLED_APPS = [
     'django_opt_out.plugins.sparkpost.apps.DjangoOptOutSparkPostConfig',
 ]
 
-ROOT_URLCONF = 'tests.urls'
+ROOT_URLCONF = 'django_opt_out.tests.urls'
 
 TEMPLATES = [
     {

@@ -7,7 +7,8 @@ from mock import patch
 
 from django_opt_out.models import OptOut
 from django_opt_out.plugins.sparkpost import signals
-from tests.test_views import CaptureSignal
+
+from ...tests.test_views import CaptureSignal
 
 
 class SparkPostHookTests(TestCase):
@@ -50,7 +51,7 @@ class SparkPostHookTests(TestCase):
         self.assertEqual('recipient@example.com', kwargs['email'])
 
     @override_settings(SPARKPOST_API_KEY='not-valid')
-    @patch('django_opt_out.plugins.sparkpost.client.suppression_list.create')
+    @patch('django_opt_out.plugins.sparkpost.hooks.client.suppression_list.create')
     def test_confirm_creates_suppression(self, create):
         url = resolve_url("django_opt_out:OptOutConfirm")
         test.Client().post(url, data={'email': 'foo@bar.com'})
