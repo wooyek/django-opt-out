@@ -4,9 +4,9 @@ python:
   - "3.5"
 
 env:
-  - TOXENV=py34-django-110
-  - TOXENV=py35-django-110
-  - TOXENV=py36-django-110
+  - TOXENV=py34-django-111
+  - TOXENV=py35-django-111
+  - TOXENV=py36-django-111
 #  - TOXENV=py34-django-20
 #  - TOXENV=py35-django-20
 #  - TOXENV=py36-django-20
