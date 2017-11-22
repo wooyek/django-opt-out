@@ -6,6 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 from django_powerbank.db.models.base import BaseModel
 from django_powerbank.db.models.fields import AutoSlugField, JSONField, SecretField
 
+from . import signals
+
 
 class OptOutTag(BaseModel):
     name = models.CharField(verbose_name=_('tag name'), max_length=30)
@@ -74,6 +76,10 @@ class OptOut(BaseModel):
         default_related_name = "out_outs"
         verbose_name = _('opt out')
         verbose_name_plural = _('oup outs')
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        signals.opt_out_saved.send_robust(self.__class__, opt_out=self)
 
 
 class OptOutTagValue(BaseModel):

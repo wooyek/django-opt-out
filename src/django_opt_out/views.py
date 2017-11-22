@@ -12,9 +12,10 @@ from django_powerbank.views import Http403
 from django_powerbank.views.auth import AbstractAccessView
 from pascal_templates.views import CreateView, DetailView, UpdateView
 
-from . import forms, models
-from .signals import opt_out_deleted, opt_out_submitted, opt_out_visited
+from . import forms, models, signals
 from .utils import validate_password
+
+log = logging.getLogger(__name__)
 
 
 class OptOutConfirm(CreateView):
@@ -47,14 +48,14 @@ class OptOutConfirm(CreateView):
 
     def get_context_data(self, **kwargs):
         kwargs['tags'] = self.get_tags()
-        opt_out_visited.send_robust(self.__class__, view=self, request=self.request, context=kwargs)
+        signals.send_signal(signals.opt_out_visited, self.__class__, view=self, request=self.request, context=kwargs)
         return super(OptOutConfirm, self).get_context_data(**kwargs)
 
     def form_valid(self, form):
         # noinspection PyAttributeOutsideInit
         self.object = form.save()
         self.save_tags()
-        opt_out_submitted.send_robust(self.__class__, view=self, request=self.request, opt_out=self.object)
+        signals.send_signal(signals.opt_out_submitted, self.__class__, view=self, request=self.request, opt_out=self.object)
         return super(ModelFormMixin, self).form_valid(form)
 
     def get_tags(self):
@@ -65,7 +66,7 @@ class OptOutConfirm(CreateView):
         for name, value in self.get_tags():
             tag = models.OptOutTag.objects.filter(name=name).first()
             if tag is None:
-                logging.warning("Tag does not exist: %s", name)
+                log.warning("Tag does not exist: %s", name)
                 continue
             self.object.tags.create(tag=tag, value=value)
 
@@ -92,7 +93,7 @@ class OptOutSuccess(OptOutBase, DetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-        opt_out_deleted.send_robust(self.__class__, view=self, request=self.request, opt_out=self.object)
+        signals.send_signal(signals.opt_out_deleted, self.__class__, view=self, request=self.request, opt_out=self.object)
         return redirect('django_opt_out:OptOutRemoved')
 
 

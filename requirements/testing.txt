@@ -1,3 +1,4 @@
+-r optional.txt
 mock
 pytest
 pytest-xdist

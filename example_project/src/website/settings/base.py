@@ -115,6 +115,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'import_export',
     'django_opt_out.apps.DjangoOptOutConfig',
+    'django_opt_out.plugins.sparkpost.apps.DjangoOptOutSparkPostConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -270,6 +271,11 @@ LOGGING = {
             'propagate': True,
             'level': 'WARNING',
         },
+        'django_opt_out': {
+            'handlers': ['console'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
         # 'django.security.DisallowedHost': {
         #     'handlers': [],
         #     'propagate': False,
@@ -288,3 +294,5 @@ if env('MAIL_ADMINS_ON_ERROR', bool, default=True):
         'level': 'ERROR',
         'propagate': True,
     }
+
+SPARKPOST_API_KEY = env('SPARKPOST_API_KEY', default=None)

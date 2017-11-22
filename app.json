@@ -40,6 +40,11 @@
       "description": "Controls if Heroku should collect any static files. This should be 0 by default.",
       "value": "0"
     }
+    "SPARKPOST_API_KEY": {
+      "description": "Provide this key if you want to test SparkPost integration.",
+      "value": ""
+      "required": false
+    }
   },
   "scripts": {
     "postdeploy": "bin/post_deploy"

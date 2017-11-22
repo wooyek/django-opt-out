@@ -1,9 +1,6 @@
 # coding=utf-8
-import logging
 
 from django.conf import settings
-
-logging.debug("Importing: %s" % __file__)
 
 # This will be used as a prefix when generating opt-out urls
 # You cane leave it blank and set full path URL by yourself
@@ -28,3 +25,6 @@ OPT_OUT_PASSWORD_HASHER = 'default'
 # It should not drop usage of secret as it ensures that a visitor is authenticated
 # When providing your own please consider using OptOutBase as view base class
 OPT_OUT_GOODBYE_VIEW = None
+
+# a list of backends that should get enabled during application initialization
+OPT_OUT_BACKENDS = []

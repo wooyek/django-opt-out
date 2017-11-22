@@ -9,6 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from ... import models, resources
 
+log = logging.getLogger(__name__)
+
 
 class Command(BaseCommand):
     help = 'Imports default opt-out feedback options to empty database'
@@ -31,7 +33,7 @@ class Command(BaseCommand):
                 assert models.OptOutFeedbackTranslation.objects.count() == 0
             except AssertionError as ex:
                 if options['on_empty']:
-                    logging.info("Database is not empty. Ignoring import.")
+                    log.info("Database is not empty. Ignoring import.")
                     return
                 raise ex
         self.import_all()
@@ -43,7 +45,7 @@ class Command(BaseCommand):
     @staticmethod
     def import_data_file(name, resource):
         data_file = Path(__file__).parent / name
-        logging.debug("Looking data file: %s", str(data_file))
+        log.debug("Looking data file: %s", str(data_file))
         with (data_file).open(encoding='UTF-8') as data:
             dataset = tablib.Dataset().load(data.read(), format='csv')
 
@@ -52,8 +54,8 @@ class Command(BaseCommand):
         if dataset.height < 1:
             raise ValidationError(_("Data set has no rows"))
 
-        # logging.debug("Trying dryrun...")
+        # log.debug("Trying dryrun...")
         # OrganizationLocationResource().import_data(dataset, dry_run=True, raise_errors=True)
-        logging.debug(_('Trying to import {}').format(name))
+        log.debug(_('Trying to import {}').format(name))
         result = resource().import_data(dataset, dry_run=False, raise_errors=True)
-        logging.info(_('Imported {} rows from {}').format(result.total_rows, name))
+        log.info(_('Imported {} rows from {}').format(result.total_rows, name))

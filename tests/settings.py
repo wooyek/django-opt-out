@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'import_export',
     'django_opt_out.apps.DjangoOptOutConfig',
+    'django_opt_out.plugins.sparkpost.apps.DjangoOptOutSparkPostConfig',
 ]
 
 ROOT_URLCONF = 'tests.urls'
