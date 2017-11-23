@@ -12,7 +12,7 @@ env:
 matrix:
     fast_finish: true
     include:
-      - { python: "3.5", env: TOXENV=lint }
+      - { python: "3.5", env: TOXENV=check }
       - { python: "3.5", env: TOXENV=docs }
     exclude:
       - { python: "2.7", env: DJANGO=master }
@@ -20,6 +20,7 @@ matrix:
       - { python: "3.4", env: DJANGO=master }
 
     allow_failures:
+      - env: DJANGO=2.0
       - env: DJANGO=master
 
 before_install:
@@ -39,26 +40,26 @@ install:
 script:
   - tox
 
-jobs:
-  include:
-    - stage: make
-      script:
-          - which python
-          - tox --version
-          - pwd
-          - ls -la
-          - make
-          - make bump
-          - make lint
-          - make test
-          - make test-all
-          - make coverage
-          - make dist
-          - make install
-          - make docs
-          # Lint again after docs generation
-          - make lint
-          - make clean
+#jobs:
+#  include:
+#    - stage: make
+#      script:
+#          - which python
+#          - tox --version
+#          - pwd
+#          - ls -la
+#          - make
+#          - make bump
+#          - make lint
+#          - make test
+#          - make test-all
+#          - make coverage
+#          - make dist
+#          - make install
+#          - make docs
+#          # Lint again after docs generation
+#          - make lint
+#          - make clean
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
