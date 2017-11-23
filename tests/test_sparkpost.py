@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from mock import patch
 
-from ....tests.test_views import CaptureSignal
+from .test_views import CaptureSignal
 from django_opt_out.models import OptOut
 from django_opt_out.plugins.sparkpost import signals
 

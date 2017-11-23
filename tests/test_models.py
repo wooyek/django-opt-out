@@ -1,16 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-test_django-opt-out
--------------------
-
-Tests for `django-opt-out` models module.
-"""
 import pytest
 from django.test import SimpleTestCase, TestCase
 from django.test.utils import override_settings
-from django_powerbank.testing import MigrationsCheckMx
+from django_powerbank.testing.base import MigrationsCheckMx
 from mock import patch
 from six.moves.urllib.parse import quote_plus
 

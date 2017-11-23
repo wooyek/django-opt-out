@@ -8,7 +8,6 @@ Subpackages
 
     django_opt_out.migrations
     django_opt_out.plugins
-    django_opt_out.tests
 
 Submodules
 ----------

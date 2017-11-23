@@ -1,13 +1,6 @@
 django\_opt\_out\.plugins\.sparkpost package
 ============================================
 
-Subpackages
------------
-
-.. toctree::
-
-    django_opt_out.plugins.sparkpost.tests
-
 Submodules
 ----------
 

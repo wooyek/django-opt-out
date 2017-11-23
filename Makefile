@@ -71,7 +71,7 @@ coverage-report: coverage ## check code coverage and view report in the browser
 	$(BROWSER) tmp/coverage/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/django_opt_out.rst
+	rm -f docs/django_opt_out*.rst
 	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ -H "Api docs" src
 	$(MAKE) -C docs clean
