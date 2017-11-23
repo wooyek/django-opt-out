@@ -46,6 +46,7 @@ script:
 jobs:
   include:
     - stage: make
+      python: "3.5"
       script:
           - which python
           - tox --version
