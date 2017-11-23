@@ -22,7 +22,6 @@ matrix:
 
     allow_failures:
       - env: DJANGO=master
-      - env: DJANGO=2.0
 
 matrix:
   fast_finish: true
