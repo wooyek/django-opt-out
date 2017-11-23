@@ -39,6 +39,26 @@ install:
 script:
   - tox
 
+jobs:
+  include:
+    - stage: make
+      script:
+          - which python
+          - tox --version
+          - pwd
+          - ls -la
+          - make
+          - make bump
+          - make lint
+          - make test
+          - make test-all
+          - make coverage
+          - make dist
+          - make install
+          - make docs
+          # Lint again after docs generation
+          - make lint
+          - make clean
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
