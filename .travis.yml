@@ -3,7 +3,6 @@ language: python
 python:
     - "3.4"
     - "3.5"
-    - "3.6"
 
 env:
     - DJANGO=1.11
@@ -25,6 +24,7 @@ matrix:
 
 matrix:
   fast_finish: true
+
 
 before_install:
   - python --version
