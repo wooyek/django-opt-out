@@ -1,11 +1,12 @@
-# Django Opt-out application dependencies (excluding django which is set in appropriate version by tox)
+# Django Opt Out dependencies
+# Django maybe missing here if multiple verssions are to be tested and installed by tox
 # For development we keep them unfreezed to work and test on newest versions as soon as they are released
+# Freezing can be perforemd by pip-compile or pipenv
 
-# Here are some popular dependencies
 django
 django-bootstrap-form
 django-import-export
 django-pascal-templates
 django-powerbank
 markdown
-pathlib
+pathlib ; python_version < '3.3'

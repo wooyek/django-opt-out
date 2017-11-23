@@ -6,11 +6,11 @@ check-manifest
 codecov
 coverage
 flake8
-invoke
+# invoke
 isort
-pip
+# pip
 pygments
 readme-renderer
 setuptools
-tox
+# tox
 wheel
