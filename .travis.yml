@@ -22,10 +22,6 @@ matrix:
     allow_failures:
       - env: DJANGO=master
 
-matrix:
-  fast_finish: true
-
-
 before_install:
   - python --version
   - uname -a
