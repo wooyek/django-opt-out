@@ -1,6 +1,7 @@
 language: python
 
 python:
+    - "2.7"
     - "3.4"
     - "3.5"
     - "3.6"
@@ -23,6 +24,7 @@ matrix:
       - { python: "3.5", env: DJANGO=master }
 
     allow_failures:
+      - python: "2.7"
       - env: DJANGO=2.0
       - env: DJANGO=master
 
@@ -41,7 +43,7 @@ install:
   - git --version
 
 script:
-  - tox
+  - tox --skip-missing-interpreters
 
 jobs:
   include:

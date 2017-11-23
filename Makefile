@@ -62,6 +62,9 @@ test: ## run tests quickly with the default Python
 tox: ## run tests on every Python version with tox
 	tox --skip-missing-interpreters --recreate -e clean,py35-django-111,check,report,docs,spell
 
+detox: ## run tests on every Python version with tox
+	detox --skip-missing-interpreters --recreate -e clean,py35-django-111,check,report,docs,spell
+
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source src --parallel-mode setup.py test
 
@@ -114,7 +117,7 @@ upgrade: ## upgrade frozen requirements to the latest version
 	pipenv install --dev -r requirements/development.txt
 	pipenv lock --requirements > requirements.txt
 
-release: sync bump publish ## build and test new package release then upload to pypi
+release: sync bump publish ## build new package version release then upload to pypi
 	git checkout develop
 	git merge master --verbose
 	git push origin develop --verbose
