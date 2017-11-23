@@ -114,7 +114,7 @@ upgrade: ## upgrade frozen requirements to the latest version
 	pipenv install --dev -r requirements/development.txt
 	pipenv lock --requirements > requirements.txt
 
-release: sync tox bump publish ## build and test new package release then upload to pypi
+release: sync bump publish ## build and test new package release then upload to pypi
 	git checkout develop
 	git merge master --verbose
 	git push origin develop --verbose
