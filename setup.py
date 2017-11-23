@@ -90,7 +90,7 @@ setup(
     exclude_package_data={
         '': ['test*.py', 'tests/*.env', '**/tests.py'],
     },
-    python_requires='>=3.4',
+    # python_requires='>=3.4',
     install_requires=[str(r.req) for r in install_requires] + ['Django>=1.10'],
     extras_require={
         'factories': ['factory-boy'],
