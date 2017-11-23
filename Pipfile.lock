@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5166a58da8b85ab73862c76400ba45af31f5ec705e0cf58bee4b36d618a4cd45"
+            "sha256": "2801f62693911f2f4d94956315b156b62d92386a7225376521b67cea4612363f"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -55,9 +55,15 @@
         },
         "django-import-export": {
             "hashes": [
-                "sha256:5a932117a082971250703dec1ffcb6a92f913c393ef87b53331ee812b2b2fd4e"
+                "sha256:3e53b1cf5226fea2cecb9915f445ae2ed905f0de0d7f18148a60f98ff3446a86"
             ],
-            "version": "==0.5.1"
+            "version": "==0.6.0"
+        },
+        "django-localflavor": {
+            "hashes": [
+                "sha256:8002485fdeda5023aa572927489601a19acf63e34c2a738f0984cf2bac5b54a2"
+            ],
+            "version": "==1.6"
         },
         "django-pascal-templates": {
             "hashes": [
@@ -67,9 +73,19 @@
         },
         "django-powerbank": {
             "hashes": [
-                "sha256:050e58e2d68f580e8c80e56489825eadf2837c40436d649ed41bba5211db5d0b"
+                "sha256:562dad51e7555ea8f1272e3fe30c130bffe7bfc255a7dd74fe198c69da551549",
+                "sha256:be6e5e6d3793f0f8251eb896c2e796f7464bd2c74dcfe5ae88f7eca935c02090"
             ],
-            "version": "==0.2.26"
+            "version": "==0.2.27"
+        },
+        "enum34": {
+            "hashes": [
+                "sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79",
+                "sha256:644837f692e5f550741432dd3f223bbb9852018674981b1664e5dc339387588a",
+                "sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1",
+                "sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850"
+            ],
+            "version": "==1.1.6"
         },
         "et-xmlfile": {
             "hashes": [
@@ -312,9 +328,15 @@
         },
         "django-import-export": {
             "hashes": [
-                "sha256:5a932117a082971250703dec1ffcb6a92f913c393ef87b53331ee812b2b2fd4e"
+                "sha256:3e53b1cf5226fea2cecb9915f445ae2ed905f0de0d7f18148a60f98ff3446a86"
             ],
-            "version": "==0.5.1"
+            "version": "==0.6.0"
+        },
+        "django-localflavor": {
+            "hashes": [
+                "sha256:8002485fdeda5023aa572927489601a19acf63e34c2a738f0984cf2bac5b54a2"
+            ],
+            "version": "==1.6"
         },
         "django-pascal-templates": {
             "hashes": [
@@ -324,9 +346,10 @@
         },
         "django-powerbank": {
             "hashes": [
-                "sha256:050e58e2d68f580e8c80e56489825eadf2837c40436d649ed41bba5211db5d0b"
+                "sha256:562dad51e7555ea8f1272e3fe30c130bffe7bfc255a7dd74fe198c69da551549",
+                "sha256:be6e5e6d3793f0f8251eb896c2e796f7464bd2c74dcfe5ae88f7eca935c02090"
             ],
-            "version": "==0.2.26"
+            "version": "==0.2.27"
         },
         "docutils": {
             "hashes": [
@@ -339,6 +362,15 @@
         "drwm0dfi": {
             "editable": true,
             "path": "."
+        },
+        "enum34": {
+            "hashes": [
+                "sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79",
+                "sha256:644837f692e5f550741432dd3f223bbb9852018674981b1664e5dc339387588a",
+                "sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1",
+                "sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850"
+            ],
+            "version": "==1.1.6"
         },
         "et-xmlfile": {
             "hashes": [

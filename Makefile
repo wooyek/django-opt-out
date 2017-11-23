@@ -110,6 +110,8 @@ bump: ## increment version number
 	bumpversion patch
 
 upgrade: ## upgrade frozen requirements to the latest version
+	pipenv install -r requirements/production.txt
+	pipenv install --dev -r requirements/development.txt
 	pipenv lock --requirements > requirements.txt
 
 release: sync tox bump publish ## build and test new package release then upload to pypi
