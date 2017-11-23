@@ -25,8 +25,8 @@ matrix:
 
     allow_failures:
       - python: "3.4"
-      - env: DJANGO=master
-      - env: DJANGO=2.0
+        env: DJANGO=master
+        env: DJANGO=2.0
 
 matrix:
   fast_finish: true
