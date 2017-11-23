@@ -42,7 +42,7 @@
     },
     "SPARKPOST_API_KEY": {
       "description": "Provide this key if you want to test SparkPost integration.",
-      "value": ""
+      "value": "",
       "required": false
     }
   },
