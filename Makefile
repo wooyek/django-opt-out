@@ -60,7 +60,7 @@ test: ## run tests quickly with the default Python
 	pytest
 
 tox: ## run tests on every Python version with tox
-	tox --skip-missing-interpreters -e clean py35-django-111 check report docs spell
+	tox --skip-missing-interpreters --recreate -e clean,py35-django-111,check,report,docs,spell
 
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source src --parallel-mode setup.py test

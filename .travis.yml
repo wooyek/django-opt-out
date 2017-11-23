@@ -55,7 +55,7 @@ jobs:
           - make bump
           - make lint
           - make test
-          - make test-all
+          - make tox
           - make coverage
           - make dist
           - make install
