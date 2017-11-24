@@ -43,7 +43,7 @@
     },
     "DISABLE_COLLECTSTATIC": {
       "description": "Controls if Heroku should collect any static files. Set it to 1 if you keep static in repo.",
-      "value": "0"
+      "required": false
     },
     "DJANGO_SETTINGS_MODULE": {
       "description": "Point to an settings module in example_project",
