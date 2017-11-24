@@ -26,9 +26,6 @@ environ.Env.read_env(str(Path(__file__).with_suffix('.env')), DEBUG='False')
 # We rely here on example_project base settings
 from website.settings.base import *  # noqa: F402, F403
 
-# Database
-# https://docs.djangoproject.com/en/dev/ref/settings/#databases
-
 if "DATABASE_URL" not in os.environ:  # pragma: no cover
     DATABASES['default']['NAME'] = ':memory:'
 
