@@ -15,10 +15,12 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 """
 
 from __future__ import absolute_import, unicode_literals
-import os
+
 import logging
+import os
 import socket
 from pathlib import Path
+
 import environ
 
 logging.basicConfig(format='%(asctime)s %(levelname)-7s %(thread)-5d %(filename)s:%(lineno)s | %(funcName)s | %(message)s', datefmt='%H:%M:%S')
@@ -174,6 +176,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+# https://docs.djangoproject.com/en/1.9/topics/i18n/translation/#how-django-discovers-language-preference
+import django_powerbank  # noqa F402 isort:skip
+import django_opt_out  # noqa F402 isort:skip
+
+LOCALE_PATHS = [
+    str(Path(django_opt_out.__file__).parent / 'locales'),
+    str(BASE_DIR / 'locale'),
+    str(Path(django_powerbank.__file__).parent / 'locales'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/

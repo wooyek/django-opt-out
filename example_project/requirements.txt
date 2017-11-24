@@ -2,9 +2,6 @@
 # and this example in editable mode
 # NOTE: paths are realative to CWD and not this file parent folder
 # Running pip install -r example_project/requiremenst.txt
--e ..
--e .
--r ../requirements/optional.txt
 
 # This example requirements that may not not be already included in the app requirements
 django

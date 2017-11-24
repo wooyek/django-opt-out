@@ -5,18 +5,25 @@
 
 import os
 import re
+import uuid
 from glob import glob
 from os.path import basename, splitext
+
+from pip.req import parse_requirements
 
 try:
     from setuptools import setup, find_packages
 except ImportError:
     from distutils.core import setup
+install_requires = parse_requirements(
+    os.path.join(os.path.dirname(__file__), "requirements.txt"),
+    session=uuid.uuid1()
+)
 
 
 def get_version(*file_paths):
     """Retrieves the version from path"""
-    filename = os.path.join(os.path.dirname(os.path.dirname(__file__)), *file_paths)
+    filename = os.path.join(os.path.dirname(__file__), *file_paths)
     print("Looking for version in: {}".format(filename))
     version_file = open(filename).read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file, re.M)
@@ -25,7 +32,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("src", "django_opt_out", "__init__.py")
+version = get_version("src", "website", "__init__.py")
 
 setup(
     name='django-opt-out-example',
@@ -39,7 +46,7 @@ setup(
     package_dir={'': 'src'},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],
     include_package_data=True,
-    install_requires=['django', 'django-environ'],
+    install_requires=[str(r.req) for r in install_requires] + ['Django>=1.10'],
     license="MIT license",
     zip_safe=False,
     keywords='django-opt-out-example',
