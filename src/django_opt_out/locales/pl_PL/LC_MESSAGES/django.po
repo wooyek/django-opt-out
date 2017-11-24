@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 17:51+0000\n"
+"POT-Creation-Date: 2017-11-24 18:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,8 +163,7 @@ msgstr ""
 "\n"
 "    <p>Bardzo nam przykro, że sprawiliśmy że nasze wiadomości stały się dla Ciebie niewygodne. Przyjmij nasze przeprosiny.</p>\n"
 "    <P>Staramy się cały czas poprawiać naszą usługę i chcemy by nasze wiadomości były dla Ciebie interesujące i korzystne.</P>\n"
-"    <p>Naprawdę chcemy uczyć się na naszych błędach i czytamy - my, żywi ludzie po drugiej stronie - każdy komentarz do rezygnacji."
-"Naprawdę doceniamy każdą informację zwrotną.</p>\n"
+"    <p>Naprawdę chcemy uczyć się na naszych błędach i czytamy - my, żywi ludzie po drugiej stronie - każdy komentarz do rezygnacji.Naprawdę doceniamy każdą informację zwrotną.</p>\n"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/removed.html:8
 #: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:8
@@ -177,7 +176,7 @@ msgid "Thank you for your feedback!"
 msgstr "Dziękujemy za Twoją opinię!"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/success.html:14
-#: src/django_oinforację zpt_out/templates/django_opt_out/OptOut/success.html:14
+#: src/django_opt_out/templates/django_opt_out/OptOut/success.html:14
 msgid "Update opt-out feedback"
 msgstr "Aktualizuj informację zwrotną"
 
@@ -193,6 +192,9 @@ msgid ""
 "    <p>Again, please accept our apologies fro any inconvenience that we cased you.</p>\n"
 "    <p>If you would like to change your feedback or reconsider your out out decision you can do that anytime.</p>\n"
 msgstr ""
+"\n"
+"    <p>Jeszcze raz przepraszamy za kłopoty jakie Tobie sprawiliśmy.</p>\n"
+"    <p>W dowolnym momencie możesz zmienić swoją informację zwrotną lub przywrócić nasze wiadomości.</p>\n"
 
 #: build/lib/django_opt_out/views.py:85 src/django_opt_out/views.py:85
 msgid "Request authentication failed, secret or email is incorrect."

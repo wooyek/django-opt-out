@@ -123,10 +123,8 @@ release: sync bump publish ## build new package version release then upload to p
 	git push origin develop --verbose
 	git push origin master --verbose
 
-init-translations:
-	# pybabel init -D django -i mypkg/locale/django.pot -d mypkg/locale -l en_US
+locales:
 	# https://docs.djangoproject.com/en/1.11/ref/django-admin/#django-admin-makemessages
 	python manage.py makemessages -v 3 --no-wrap --locale=pl_PL
+	python manage.py compilemessages -v 3
 
-translations:
-	#pybabel init -D django -i mypkg/locale/django.pot -d mypkg/locale -l en_US
