@@ -40,7 +40,7 @@ class OptOutConfirmTests(TestCase):
         view = views.OptOutConfirm()
         view.object = factories.OptOutFactory(pk=1, secret='7ebc5d464a6485e4b64f', email='ymoore@hotmail.com')
         url = view.get_success_url()
-        self.assertEqual('/opt-out/1/7ebc5d464a6485e4b64f/ymoore@hotmail.com', url)
+        self.assertEqual('/opt-out/success/1/7ebc5d464a6485e4b64f/ymoore@hotmail.com', url)
 
 
 class OptOutConfirmGetTests(TestCase, AssertionsMx):

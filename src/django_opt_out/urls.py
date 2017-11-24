@@ -7,8 +7,8 @@ from . import views as v
 app_name = 'django_opt_out'
 
 urlpatterns = [
-    url(r'^confirm$', v.OptOutConfirm.as_view(), name='OptOutConfirm'),
+    url(r'^$', v.OptOutConfirm.as_view(), name='OptOutConfirm'),
     url(r'^success/(?P<pk>[\d]+)/(?P<secret>[\w]+)/(?P<email>[^/]+)$', v.OptOutSuccess.as_view(), name='OptOutSuccess'),
-    url(r'^update$/(?P<pk>[\d]+)/(?P<secret>[\w]+)/(?P<email>[^/]+)$', v.OptOutUpdate.as_view(), name='OptOutUpdate'),
+    url(r'^update/(?P<pk>[\d]+)/(?P<secret>[\w]+)/(?P<email>[^/]+)$', v.OptOutUpdate.as_view(), name='OptOutUpdate'),
     url(r'^removed$', v.OptOutRemoved.as_view(), name='OptOutRemoved'),
 ]
