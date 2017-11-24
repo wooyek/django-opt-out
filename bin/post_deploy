@@ -15,3 +15,9 @@ if [[ -n "$CREATE_SUPER_USER" ]]; then
     printf "from django.contrib.auth.models import User\nif not User.objects.exists(): User.objects.create_superuser(*'$CREATE_SUPER_USER'.split(':'))" | python /app/example_project/manage.py shell
 fi
 
+if [[ -n "$APP_COLLECTSTATIC" ]]; then
+    echo "==> Collecting static"
+    cd /app/example_project/src
+    python /app/example_project/manage.py collectstatic
+fi
+
