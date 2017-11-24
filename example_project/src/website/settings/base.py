@@ -118,7 +118,6 @@ INSTALLED_APPS = [
     'import_export',
     'django_opt_out.apps.DjangoOptOutConfig',
     'django_opt_out.plugins.sparkpost.apps.DjangoOptOutSparkPostConfig',
-    'example_app.apps.ExampleAppConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
