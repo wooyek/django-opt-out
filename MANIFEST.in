@@ -33,6 +33,7 @@ recursive-include docs *.txt
 recursive-include docs Makefile
 recursive-include docs *.css
 recursive-exclude docs/_build *
+recursive-include docs/_static *.png
 recursive-include src *.py
 recursive-include src *.css
 recursive-include src *.html
@@ -42,10 +43,12 @@ recursive-include src .gitignore
 recursive-include src *.env
 recursive-include src *.cfg
 recursive-include src *.po
+recursive-include src *.mo
 recursive-include src *.pot
 recursive-include bin * *.*
 recursive-include tests *.env
 recursive-include tests *.py
+
 
 exclude example_project/.idea/workspace.xml
 recursive-include example_project *.html
