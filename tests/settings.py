@@ -2,6 +2,7 @@
 # Based on https://github.com/wooyek/cookiecutter-django-website by Janusz Skonieczny
 
 import logging
+import os
 from pathlib import Path
 
 import environ
@@ -24,10 +25,10 @@ print("""
 environ.Env.read_env(str(Path(__file__).with_suffix('.env')), DEBUG='False')
 
 # We rely here on example_project base settings
-from website.settings.base import *  # noqa: F402, F403
+from website.settings.base import *  # noqa: F402, F403 isort:skip
 
 if "DATABASE_URL" not in os.environ:  # pragma: no cover
-    DATABASES['default']['NAME'] = ':memory:'
+    DATABASES['default']['NAME'] = ':memory:'  # noqa F405
 
 ROOT_URLCONF = 'tests.urls'
 

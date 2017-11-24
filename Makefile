@@ -48,11 +48,11 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 
 isort:
-	isort --verbose --recursive src tests setup.py
+	isort --verbose --recursive src tests example_project setup.py
 
 lint: ## check style with flake8
 	flake8 src tests setup.py manage.py
-	isort --verbose --check-only --diff --recursive src tests setup.py
+	isort --verbose --check-only --diff --recursive src tests example_project setup.py
 	python setup.py check --strict --metadata --restructuredtext
 	check-manifest  --ignore .idea,.idea/* .
 
