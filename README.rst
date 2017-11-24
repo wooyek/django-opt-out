@@ -67,6 +67,10 @@ To run an example project for this django reusable app, click the button below a
     :target: https://heroku.com/deploy
     :alt: Deploy Django Opt-out example project to Heroku
 
+.. image:: /_static/Django-Opt-out-form.png
+    :target: https://heroku.com/deploy
+    :alt: Deploy Django Opt-out example project to Heroku
+
 
 Quickstart
 ----------
