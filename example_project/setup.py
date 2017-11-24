@@ -25,7 +25,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("src", "django_opt_out", "__init__.py")
+version = get_version("src", "website", "__init__.py")
 
 setup(
     name='django-opt-out-example',
