@@ -43,11 +43,11 @@
     },
     "DISABLE_COLLECTSTATIC": {
       "description": "Controls if Heroku should collect any static files. This won't work with example_project.",
-      "value": 1
+      "value": "1"
     },
     "APP_COLLECTSTATIC": {
       "description": "Make example project collect statics on it'sown.",
-      "value": 1,
+      "value": "1",
       "required": false
     },
     "DJANGO_SETTINGS_MODULE": {
