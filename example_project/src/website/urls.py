@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
+    url(r'^$', TemplateView.as_view(template_name="django_opt_out/base.html")),
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^i18n/language', TemplateView.as_view(template_name='set_language.html'), name='language_form'),
