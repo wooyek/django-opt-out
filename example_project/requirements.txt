@@ -4,7 +4,7 @@
 # Running pip install -r example_project/requiremenst.txt
 -e ..
 -e .
-#-r ../requirements/local.txt
+-r ../requirements/optional.txt
 
 # This example requirements that may not not be already included in the app requirements
 django
