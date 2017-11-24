@@ -8,7 +8,7 @@ if [[ "$AUTO_MIGRATE" == "True" ]]; then
     python example_project/manage.py opt_out_feedback_defaults --on-empty
 fi
 
-if [[ -n "$CREATE_SUPER_USER" == "True" ]]; then
+if [[ -n "$CREATE_SUPER_USER" ]]; then
     echo "==> Performing database migrations before super user creation"
     python manage.py migrate
     echo "==> Creating super user"
