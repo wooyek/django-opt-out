@@ -179,8 +179,8 @@ USE_L10N = True
 USE_TZ = True
 
 # https://docs.djangoproject.com/en/1.9/topics/i18n/translation/#how-django-discovers-language-preference
-import django_powerbank  # isort:skip
-import django_opt_out  # isort:skip
+import django_powerbank  # noqa F402 isort:skip
+import django_opt_out  # noqa F402 isort:skip
 
 LOCALE_PATHS = [
     str(Path(django_opt_out.__file__).parent / 'locales'),

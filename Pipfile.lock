@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "811962e7c2d5b67ba531c532fdf0f9a897c3b577c8b0206aa3305d2fd462ce44"
+            "sha256": "ffa84384bb8ce59746088df5d7a9a028d3da5a983c1c812fc73426b6f4bcfebf"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -73,10 +73,10 @@
         },
         "django-powerbank": {
             "hashes": [
-                "sha256:562dad51e7555ea8f1272e3fe30c130bffe7bfc255a7dd74fe198c69da551549",
-                "sha256:be6e5e6d3793f0f8251eb896c2e796f7464bd2c74dcfe5ae88f7eca935c02090"
+                "sha256:190a9f5459fb07039b42aefc62d5711682b234bfe5c2639436b9a02a21de22f4",
+                "sha256:ca3b621e311bdbefc316ed500d2db45440b2f5d9cd6b17263244a277726491f9"
             ],
-            "version": "==0.2.27"
+            "version": "==0.2.28"
         },
         "enum34": {
             "hashes": [
@@ -92,13 +92,6 @@
                 "sha256:614d9722d572f6246302c4491846d2c393c199cfa4edc9af593437691683335b"
             ],
             "version": "==1.0.1"
-        },
-        "gunicorn": {
-            "hashes": [
-                "sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6",
-                "sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622"
-            ],
-            "version": "==19.7.1"
         },
         "jdcal": {
             "hashes": [
@@ -192,6 +185,9 @@
         }
     },
     "develop": {
+        "6844dd9": {
+            "file": "file:///data/work/wooyek/django-opt-out/example_project"
+        },
         "alabaster": {
             "hashes": [
                 "sha256:2eef172f44e8d301d25aff8068fddd65f767a3f04b5f15b0f4922f113aa1c732",
@@ -360,10 +356,10 @@
         },
         "django-powerbank": {
             "hashes": [
-                "sha256:562dad51e7555ea8f1272e3fe30c130bffe7bfc255a7dd74fe198c69da551549",
-                "sha256:be6e5e6d3793f0f8251eb896c2e796f7464bd2c74dcfe5ae88f7eca935c02090"
+                "sha256:190a9f5459fb07039b42aefc62d5711682b234bfe5c2639436b9a02a21de22f4",
+                "sha256:ca3b621e311bdbefc316ed500d2db45440b2f5d9cd6b17263244a277726491f9"
             ],
-            "version": "==0.2.27"
+            "version": "==0.2.28"
         },
         "docutils": {
             "hashes": [
@@ -562,9 +558,9 @@
         },
         "pluggy": {
             "hashes": [
-                "sha256:bd60171dbb250fdebafad46ed16d97065369da40568ae948ef7117eee8536e94"
+                "sha256:7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff"
             ],
-            "version": "==0.5.2"
+            "version": "==0.6.0"
         },
         "psycopg2": {
             "hashes": [
