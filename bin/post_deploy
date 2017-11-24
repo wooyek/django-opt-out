@@ -9,8 +9,6 @@ if [[ "$AUTO_MIGRATE" == "True" ]]; then
 fi
 
 if [[ -n "$CREATE_SUPER_USER" ]]; then
-    echo "==> Performing database migrations before super user creation"
-    python manage.py migrate
     echo "==> Creating super user"
     echo "from django.contrib.auth.models import User; if not User.objects.exists(): User.objects.create_superuser(*'$CREATE_SUPER_USER'.split(':'))" | python manage.py shell
 fi

@@ -21,6 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^i18n/language', TemplateView.as_view(template_name='set_language.html'), name='language_form'),
-    url(r'', include('django_opt_out.urls', namespace='django_opt_out')),
-    url(r'', include('django_opt_out.plugins.sparkpost.urls')),
+    url(r'^opt-out/', include('django_opt_out.urls', namespace='django_opt_out')),
+    url(r'^opt-out/', include('django_opt_out.plugins.sparkpost.urls')),
 ]
