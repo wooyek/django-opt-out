@@ -17,7 +17,8 @@
     },
     "CREATE_SUPER_USER": {
       "description": "This will auto create a super user if no users are present. This won't work if auto migrations is off",
-      "value": "admin:me@example.com:P@$Sw0rd"
+      "value": "admin:me@example.com:P@$Sw0rd",
+      "required": false
     },
     "SECRET_KEY": {
       "description": "A secret key for a particular Django installation. This is used to provide cryptographic signing.",
@@ -37,8 +38,8 @@
       "required": false
     },
     "UPGRADE_REQUIREMENTS": {
-      "description": "Controls if a post_compile hook should re-install requirements after initial Heroku performed install. This allows to have unfrozen requirements.",
-      "value": "False"
+      "description": "We need to workaround some heroku limitations and install example_project requirements",
+      "value": "True"
     },
     "DISABLE_COLLECTSTATIC": {
       "description": "Controls if Heroku should collect any static files. Set it you keep static in repo.",

@@ -5,5 +5,3 @@
 # production and not in development, eg. binary versions for windows development.
 # Preferably you can obtain the same result using environment markers
 # https://pip.pypa.io/en/stable/reference/pip_install/#requirement-specifiers
-
-gunicorn
