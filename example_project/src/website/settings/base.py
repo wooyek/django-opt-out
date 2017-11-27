@@ -183,7 +183,7 @@ import django_opt_out  # noqa F402 isort:skip
 
 LOCALE_PATHS = [
     str(Path(django_opt_out.__file__).parent / 'locales'),
-    str(BASE_DIR / 'locale'),
+    str(BASE_DIR / 'locales'),
     str(Path(django_powerbank.__file__).parent / 'locales'),
 ]
 

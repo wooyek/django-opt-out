@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-24 18:26+0000\n"
+"POT-Creation-Date: 2017-11-27 10:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,3 +199,13 @@ msgstr ""
 #: build/lib/django_opt_out/views.py:85 src/django_opt_out/views.py:85
 msgid "Request authentication failed, secret or email is incorrect."
 msgstr "Uwierzytelnienie nie powiodło się, nieprawidłowy sekret lub email"
+
+#: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:10
+#, fuzzy
+#| msgid "Thank you for your feedback!"
+msgid "Thank you for changing your mind :)"
+msgstr "Dziękujemy za Twoją opinię!"
+
+#: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:11
+msgid "You are back in!"
+msgstr "Jesteś z powrotem!"
