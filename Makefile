@@ -33,6 +33,7 @@ clean-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
 	rm -fr .eggs/
+	rm -fr example_project/.eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
@@ -125,6 +126,6 @@ release: sync bump publish ## build new package version release then upload to p
 
 locales:
 	# https://docs.djangoproject.com/en/1.11/ref/django-admin/#django-admin-makemessages
-	python manage.py makemessages -v 3 --no-wrap --locale=pl_PL
+	python manage.py makemessages -v 3 --no-wrap --ignore ".*" --locale=pl_PL
 	python manage.py compilemessages -v 3
 
