@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `django-opt-out` package."""
+import unittest
 
+import django
 import pytest
 from click.testing import CliRunner
 from django.test import TestCase
@@ -41,6 +43,7 @@ def test_command_line_interface():
 
 
 class SetupDefaultsTests(TestCase):
+    @unittest.skipIf(django.VERSION[0] > 1)
     def test_tags(self):
         from django_opt_out.management.commands.opt_out_feedback_defaults import Command
         Command().import_all()

@@ -1,56 +1,68 @@
 [[source]]
 
-verify_ssl = true
 name = "pypi"
+verify_ssl = true
 url = "https://pypi.python.org/simple"
+
+
+[packages]
+
+click = "*"
+diff-match-patch = "==20121119"
+Django = "*"
+django-bootstrap-form = "*"
+django-import-export = "*"
+django-localflavor = "==1.6"
+django-pascal-templates = "*"
+django-powerbank = "*"
+"enum34" = "==1.1.6"
+et_xmlfile = "==1.0.1"
+jdcal = "==1.3"
+Markdown = "*"
+odfpy = "==1.3.5"
+openpyxl = "==2.4.9"
+pathlib = "*"
+pytz = "==2017.3"
+PyYAML = "==3.12"
+tablib = "==0.12.1"
+unicodecsv = "==0.14.1"
+xlrd = "==1.1.0"
+xlwt = "==1.3.0"
 
 
 [dev-packages]
 
-django = "*"
+click = "*"
+Django = "*"
 django-bootstrap-form = "*"
 django-import-export = "*"
 django-pascal-templates = "*"
 django-powerbank = "*"
-markdown = "*"
+Markdown = "*"
 pathlib = "*"
+factory_boy = "*"
 sparkpost = "*"
 mock = "*"
 pytest = "*"
 pytest-xdist = "*"
 pytest-html = "*"
 pytest-django = "*"
-factory-boy = "*"
 "psycopg2" = "*"
 django-environ = "*"
+"c1a2a60" = {path = "/data/work/wooyek/django-opt-out", editable = true}
+"8f7e647" = {path = "/data/work/wooyek/django-opt-out/example_project", editable = true}
 "bump2version" = "*"
 check-manifest = "*"
 codecov = "*"
 coverage = "*"
+detox = "*"
 "flake8" = "*"
-invoke = "*"
 isort = "*"
-pygments = "*"
-readme-renderer = "*"
+Pygments = "*"
+readme_renderer = "*"
 tox = "*"
-sphinx = ">=1.6.5"
-sphinx-rtd-theme = "*"
+Sphinx = ">=1.6.5"
+sphinx_rtd_theme = "*"
 docutils = "==0.13.1"
 sphinxcontrib-spelling = "*"
 pyenchant = "*"
-"drwm0dfi" = {path = ".", editable = true}
-click = "*"
-detox = "*"
-"6844dd9" = {file = "file:///data/work/wooyek/django-opt-out/example_project"}
-
-
-[packages]
-
-django = "*"
-django-bootstrap-form = "*"
-django-import-export = "*"
-django-pascal-templates = "*"
-django-powerbank = "*"
-markdown = "*"
-pathlib = "*"
-click = "*"
