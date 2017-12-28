@@ -23,15 +23,14 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
-install_requires = parse_requirements(
-    os.path.join(os.path.dirname(__file__), "requirements", "production.txt"),
-    session=uuid.uuid1()
-)
 
-test_requirements = parse_requirements(
-    os.path.join(os.path.dirname(__file__), "requirements", "testing.txt"),
-    session=uuid.uuid1()
-)
+def requirements(path):
+    items = parse_requirements(path, session=uuid.uuid1())
+    return [";".join((str(r.req), str(r.markers))) if r.markers else str(r.req) for r in items]
+
+tests_require = requirements(os.path.join(os.path.dirname(__file__), "requirements", "testing.txt"))
+install_requires = requirements(os.path.join(os.path.dirname(__file__), "requirements", "production.txt"))
+install_requires += ['django>=1.11']
 
 
 def get_version(*file_paths):
@@ -91,7 +90,7 @@ setup(
         '': ['test*.py', 'tests/*.env', '**/tests.py'],
     },
     # python_requires='>=3.4',
-    install_requires=[str(r.req) for r in install_requires] + ['Django>=1.10'],
+    install_requires=install_requires,
     extras_require={
         'factories': ['factory-boy'],
         'sparkpost': ['sparkpost'],
@@ -109,7 +108,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     test_suite='runtests.run_tests',
-    tests_require=[str(r.req) for r in test_requirements],
+    tests_require=tests_require,
     # https://docs.pytest.org/en/latest/goodpractices.html#integrating-with-setuptools-python-setup-py-test-pytest-runner
     setup_requires=['pytest-runner'],
 )
