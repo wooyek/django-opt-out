@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import unittest
 
+import django
 import pytest
 from django.test import SimpleTestCase, TestCase
 from django.test.utils import override_settings
@@ -14,7 +16,10 @@ from django_opt_out.utils import get_opt_out_url, get_password, validate_passwor
 
 @pytest.mark.django_db
 class MigrationsCheckTests(MigrationsCheckMx, TestCase):
-    pass
+
+    @unittest.skipIf(django.VERSION[0] < 2, "There maybe difference in migrations state for older versions of django")
+    def test_missing_migrations(self):
+        super().test_missing_migrations()
 
 
 @override_settings(OUT_OUT_REQUIRE_CONFIRMATION=False)
