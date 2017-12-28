@@ -43,7 +43,7 @@ def test_command_line_interface():
 
 
 class SetupDefaultsTests(TestCase):
-    @unittest.skipIf(django.VERSION[0] > 1)
+    @unittest.skipIf(django.VERSION[0] > 1, "django-import-export does not support django 2")
     def test_tags(self):
         from django_opt_out.management.commands.opt_out_feedback_defaults import Command
         Command().import_all()
