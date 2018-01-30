@@ -11,7 +11,7 @@ from mock import patch
 from six.moves.urllib.parse import quote_plus
 
 from django_opt_out import factories
-from django_opt_out.utils import get_opt_out_url, get_password, validate_password
+from django_opt_out.utils import get_opt_out_path, get_password, validate_password, get_opt_out_url
 
 
 @pytest.mark.django_db
@@ -25,28 +25,28 @@ class MigrationsCheckTests(MigrationsCheckMx, TestCase):
 @override_settings(OUT_OUT_REQUIRE_CONFIRMATION=False)
 class TestOptOutUrl(SimpleTestCase):
     def test_no_tags(self):
-        url = get_opt_out_url('foo@bar.com')
+        url = get_opt_out_path('foo@bar.com')
         self.assertEqual(url, '/opt-out/?email=foo%40bar.com')
 
     def test_one_tag(self):
-        url = get_opt_out_url('foo2@bar.com', 'notification')
+        url = get_opt_out_path('foo2@bar.com', 'notification')
         self.assertEqual(url, '/opt-out/?email=foo2%40bar.com&tag=notification')
 
     def test_multiple_tags(self):
-        url = get_opt_out_url('foo@bar.com', 'notifications', 'comments')
+        url = get_opt_out_path('foo@bar.com', 'notifications', 'comments')
         self.assertEqual(url, '/opt-out/?email=foo%40bar.com&tag=notifications&tag=comments')
 
     def test_many_tags(self):
-        url = get_opt_out_url('foo@bar.com', 'notifications', 'comments')
+        url = get_opt_out_path('foo@bar.com', 'notifications', 'comments')
         self.assertEqual(url, '/opt-out/?email=foo%40bar.com&tag=notifications&tag=comments')
 
     def test_tags_values(self):
-        url = get_opt_out_url('foo@bar.com', 'notifications:123', 'comments:owner')
+        url = get_opt_out_path('foo@bar.com', 'notifications:123', 'comments:owner')
         self.assertEqual(url, '/opt-out/?email=foo%40bar.com&tag=notifications%3A123&tag=comments%3Aowner')
 
     @override_settings(OPT_OUT_BASE_URL='https://ex.com')
     def test_settings_base_url(self):
-        url = get_opt_out_url('foo@bar.com', )
+        url = get_opt_out_url('foo@bar.com')
         self.assertEqual(url, 'https://ex.com/opt-out/?email=foo%40bar.com')
 
     @override_settings(OUT_OUT_REQUIRE_CONFIRMATION=True)

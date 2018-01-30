@@ -7,7 +7,7 @@ from django_powerbank.testing.base import AssertionsMx
 from mock import Mock, patch
 
 from django_opt_out import factories, models, signals, views
-from django_opt_out.utils import get_opt_out_url
+from django_opt_out.utils import get_opt_out_path
 
 
 class CaptureSignal(TestContextDecorator):
@@ -53,7 +53,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
         self.assertTrue(handler.called)
 
     def test_simple(self):
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual({}, response.context_data['form'].errors)
@@ -61,7 +61,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
 
     def test_with_feedback(self):
         feedback = factories.OptOutFeedbackFactory.create_batch(10)
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual({}, response.context_data['form'].errors)
@@ -72,7 +72,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
         feedback = factories.OptOutFeedbackFactory.create_batch(3)
         tag1 = factories.OptOutTagFactory()
         factories.OptOutFeedbackFactory.create_batch(3, tags=(tag1,))
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual({}, response.context_data['form'].errors)
@@ -87,7 +87,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
         factories.OptOutFeedbackFactory.create_batch(3, tags=(tag2,))
         tag3 = factories.OptOutTagFactory()
         feedback.extend(factories.OptOutFeedbackFactory.create_batch(3, tags=(tag3,)))
-        url = get_opt_out_url("foo@bar.com", tag1.name, tag3.name)
+        url = get_opt_out_path("foo@bar.com", tag1.name, tag3.name)
         response = test.Client().get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual({}, response.context_data['form'].errors)
@@ -97,7 +97,7 @@ class OptOutConfirmGetTests(TestCase, AssertionsMx):
     def test_feedback_checked_by_default(self):
         factories.OptOutFeedbackFactory.create_batch(3)
         feedback = factories.OptOutFeedbackFactory.create_batch(3, default=True)
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().get(url)
         self.assertEqual(200, response.status_code)
         self.assertEqual({}, response.context_data['form'].errors)
@@ -176,7 +176,7 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
 
     def test_valid_tag(self):
         tag = factories.OptOutTagFactory(name='source')
-        url = get_opt_out_url("foo@bar.com", "source")
+        url = get_opt_out_path("foo@bar.com", "source")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
         item = models.OptOut.objects.first()
@@ -186,7 +186,7 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
 
     def test_valid_tag_value(self):
         factories.OptOutTagFactory(name='source')
-        url = get_opt_out_url("foo@bar.com", "source:some")
+        url = get_opt_out_path("foo@bar.com", "source:some")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
         item = models.OptOut.objects.first()
@@ -195,7 +195,7 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
     def test_multiple_tags(self):
         factories.OptOutTagFactory(name='source')
         factories.OptOutTagFactory(name='flag')
-        url = get_opt_out_url("foo@bar.com", "source:some", "flag")
+        url = get_opt_out_path("foo@bar.com", "source:some", "flag")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
         item = models.OptOut.objects.first()
@@ -203,14 +203,14 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
 
     def test_feedback(self):
         questions = factories.OptOutFeedbackFactory.create_batch(10)[3:7]
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().post(url, data={'email': 'foo@bar.com', 'feedback': [q.pk for q in questions]})
         self.assertNoFormErrors(response)
         item = models.OptOut.objects.first()
         self.assertEqual(set(questions), set(item.feedback.all()))
 
     def test_confirmed(self):
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
         item = models.OptOut.objects.first()
@@ -219,7 +219,7 @@ class OptOutConfirmPostTests(TestCase, AssertionsMx):
 
     @override_settings(OUT_OUT_REQUIRE_CONFIRMATION=False)
     def test_not_confirmed(self):
-        url = get_opt_out_url("foo@bar.com")
+        url = get_opt_out_path("foo@bar.com")
         response = test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertNoFormErrors(response)
         item = models.OptOut.objects.first()
