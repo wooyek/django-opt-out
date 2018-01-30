@@ -11,7 +11,7 @@ from mock import patch
 from six.moves.urllib.parse import quote_plus
 
 from django_opt_out import factories
-from django_opt_out.utils import get_opt_out_path, get_password, validate_password, get_opt_out_url
+from django_opt_out.utils import get_opt_out_path, get_opt_out_url, get_password, validate_password
 
 
 @pytest.mark.django_db
