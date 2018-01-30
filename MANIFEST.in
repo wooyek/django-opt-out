@@ -1,6 +1,4 @@
-
 include AUTHORS.rst
-
 include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
@@ -18,6 +16,7 @@ include tox.ini
 include *.json
 include Procfile
 include .env Pipfile Pipfile.lock
+include .tmp/.gitignore
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
@@ -61,3 +60,4 @@ recursive-exclude example_project/.eggs *.*
 recursive-include example_project *.iml
 recursive-include example_project *.xml
 recursive-include example_project *.po
+recursive-include example_project *.cfg
