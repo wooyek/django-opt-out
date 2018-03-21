@@ -7,7 +7,7 @@ from mock import patch
 
 from .test_views import CaptureSignal
 from django_opt_out.models import OptOut
-from django_opt_out.plugins.sparkpost import signals, send_email
+from django_opt_out.plugins.sparkpost import send_email, signals
 
 
 class SparkPostHookTests(TestCase):

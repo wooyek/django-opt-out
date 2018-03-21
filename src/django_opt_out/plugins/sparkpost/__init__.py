@@ -1,7 +1,7 @@
 # coding=utf-8
 import json
 import logging
-from smtplib import SMTPServerDisconnected, SMTPAuthenticationError
+from smtplib import SMTPAuthenticationError, SMTPServerDisconnected
 
 from django import dispatch
 from django.conf import settings
