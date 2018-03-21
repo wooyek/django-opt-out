@@ -1,4 +1,6 @@
 # coding=utf-8
+from email.utils import parseaddr
+
 from django.conf import settings
 from django.contrib.auth.hashers import check_password, make_password
 from django.shortcuts import resolve_url
@@ -12,6 +14,7 @@ def get_opt_out_url(email, base_url=None, *tags):
 
 def get_opt_out_path(email, *tags):
     password = get_password(email)
+    name, email = parseaddr(email)
     query = [('email', email), ('tag', tags)]
     if settings.OUT_OUT_REQUIRE_CONFIRMATION:
         query.append(('auth', password))

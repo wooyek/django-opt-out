@@ -75,7 +75,7 @@ test: ## run tests quickly with the default Python
 
 tox: ## run tests on every Python version with tox
 	tox --skip-missing-interpreters --recreate
-	
+
 detox: ## run tests on every Python version with tox
 	#detox --skip-missing-interpreters --recreate
 	tox -l | $(DETOXME) | sh
@@ -84,10 +84,10 @@ coverage: ## check code coverage quickly with the default Python
 	coverage run --source src --parallel-mode setup.py test
 
 coverage-report: coverage ## check code coverage and view report in the browser
-	coverage combine --append
+	coverage combine
 	coverage report -m
 	coverage html
-	$(BROWSER) tmp/coverage/index.html
+	$(BROWSER) .tmp/coverage/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/django_opt_out*.rst

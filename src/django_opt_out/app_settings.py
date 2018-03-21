@@ -28,3 +28,9 @@ OPT_OUT_GOODBYE_VIEW = None
 
 # a list of backends that should get enabled during application initialization
 OPT_OUT_BACKENDS = []
+
+# Allow Sparkpost plugin send_email to retry once on SMTPServerDisconnected, SMTPAuthenticationError
+SPARKPOST_RETRY_ONCE = True
+
+# Allow SparkPost plugin send_email to automatically render text message variant
+SPARKPOST_HTML2TXT = True

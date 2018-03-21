@@ -44,6 +44,10 @@ class TestOptOutUrl(SimpleTestCase):
         url = get_opt_out_path('foo@bar.com', 'notifications:123', 'comments:owner')
         self.assertEqual(url, '/opt-out/?email=foo%40bar.com&tag=notifications%3A123&tag=comments%3Aowner')
 
+    def test_named_email_parsing(self):
+        url = get_opt_out_path('Artur Dent <42@galaxy.net>')
+        self.assertEqual(url, '/opt-out/?email=42%40galaxy.net')
+
     @override_settings(OPT_OUT_BASE_URL='https://ex.com')
     def test_settings_base_url(self):
         url = get_opt_out_url('foo@bar.com')
