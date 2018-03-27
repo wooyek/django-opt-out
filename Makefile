@@ -66,7 +66,7 @@ isort:
 
 lint: ## check style with flake8
 	flake8 src tests setup.py manage.py
-	isort --verbose --check-only --diff --recursive src tests example_project setup.py
+	isort --check-only --diff --recursive src tests example_project setup.py
 	python setup.py check --strict --metadata --restructuredtext
 	check-manifest  --ignore .idea,.idea/* .
 
@@ -81,12 +81,14 @@ detox: ## run tests on every Python version with tox
 	tox -l | $(DETOXME) | sh
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source src --parallel-mode setup.py test
+	# coverage run --source src --parallel-mode setup.py test
+	pytest --cov=src --cov=tests
 
-coverage-report: coverage ## check code coverage and view report in the browser
+coverage-report: ## check code coverage and view report in the browser
+	pytest --cov=src --cov=tests --cov-fail-under=10
 	coverage combine
-	coverage report -m
-	coverage html
+	coverage report -m --fail-under=10
+	coverage html --fail-under=10
 	$(BROWSER) .tmp/coverage/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
@@ -126,9 +128,15 @@ sync: ## Sync master and develop branches in both directions
 	git checkout develop
 
 bump: ## increment version number
-	bumpversion patch
+	bump2version patch
 
 upgrade: ## upgrade frozen requirements to the latest version
+	pip-compile requirements.in -o requirements.txt
+	sort requirements.txt -o requirements.txt
+	git add requirements.txt
+	git commit -m "Requirements upgrade"
+
+upgrade2: ## upgrade frozen requirements to the latest version
 	pipenv install -r requirements/production.txt
 	pipenv install --dev -r requirements/development.txt
 	pipenv lock --requirements > requirements/lock/production.txt

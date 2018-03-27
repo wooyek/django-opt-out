@@ -12,6 +12,7 @@ class TranslatedMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 
 class OptOutForm(forms.ModelForm):
+    required_css_class = 'required'
     feedback = TranslatedMultipleChoiceField(
         label=_('Please help us provide a better service'),
         widget=forms.CheckboxSelectMultiple,
