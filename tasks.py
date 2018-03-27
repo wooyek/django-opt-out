@@ -179,7 +179,7 @@ def release_start(ctx):
 
 
 # noinspection PyUnusedLocal
-@task(check, sync, detox, post=[upload_pypi])
+@task(check, detox, post=[upload_pypi, sync])
 def release_finish(ctx):
     """Finish a release cycle with publishing a release branch"""
     ctx.run("git flow release finish --fetch --push")
