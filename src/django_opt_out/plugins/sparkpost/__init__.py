@@ -49,12 +49,12 @@ def _message_factory(html_message, text_message, **kwargs):
 def _send_robust(message):
     try:
         return message.send()
-    except SparkPostAPIException as ex:  # pragma: nocover
+    except SparkPostAPIException as ex:  # pragma: no cover
         if ex.status == 1902 or not settings.FAIL_ON_EMAIL_SUPPRESSION:
             logging.error("Email suppression: %s", message.to, exc_info=ex)
         else:
             raise
-    except (SMTPServerDisconnected, SMTPAuthenticationError) as ex:  # pragma: nocover
+    except (SMTPServerDisconnected, SMTPAuthenticationError) as ex:  # pragma: no cover
         if not settings.SPARKPOST_RETRY_ONCE:
             raise
         logging.error("", exc_info=ex)
@@ -65,7 +65,7 @@ def _send_robust(message):
 def _render_message(ctx, template_html, template_txt):
     html_message = render_to_string(template_html, ctx)
     text_message = None
-    if template_txt is None:  # pragma: nocover
+    if template_txt is None:  # pragma: no cover
         template_txt = (template_html.replace(".html", ".jinja2"), template_html.replace(".html", ".txt"))
     try:
         text_message = render_to_string(template_txt, ctx)
