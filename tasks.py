@@ -174,8 +174,9 @@ def assets(ctx):
 def release_start(ctx):
     """Start a release cycle with publishing a release branch"""
     ctx.run("git flow release start -v v{}-release".format(get_current_version()))
-    ctx.run("git flow release publish")
     ctx.run("git merge master --verbose")
+    ctx.run("bumpversion patch --no-tag")
+    ctx.run("git flow release publish")
 
 
 # noinspection PyUnusedLocal
