@@ -42,6 +42,14 @@ PIP = VENV_BIN / 'pip'
 MANAGE = '{} {} '.format(PYTHON, SRC_DIR / 'manage.py')
 
 
+def get_current_version():
+    from configparser import ConfigParser
+    cfg = ConfigParser()
+    cfg.read(str(Path(ROOT_DIR) / 'setup.cfg'))
+    current_version = cfg.get('bumpversion', 'current_version')
+    return current_version
+
+
 @task
 def clean(ctx):
     for item in chain(Path(ROOT_DIR).rglob("*.pyc"), Path(ROOT_DIR).rglob("*.pyo")):
@@ -65,12 +73,13 @@ def clean(ctx):
 
 
 @task
-def lint(ctx):
+def check(ctx):
     """Check project codebase cleanness"""
     ctx.run("flake8 src tests setup.py manage.py")
     ctx.run("isort --check-only --diff --recursive src tests setup.py")
     ctx.run("python setup.py check --strict --metadata --restructuredtext")
     ctx.run("check-manifest  --ignore .idea,.idea/* .")
+    ctx.run("pytest")
 
 
 @task
@@ -126,9 +135,6 @@ def sync(ctx):
     ctx.run("git checkout develop")
     ctx.run("git merge master --verbose")
 
-    ctx.run("git checkout master")
-    ctx.run("git merge develop --verbose")
-
     ctx.run("git checkout develop")
 
 
@@ -162,7 +168,23 @@ def assets(ctx):
 
 
 # noinspection PyUnusedLocal
-@task(lint, sync, bump)
+@task(check, sync, detox)
+def release_start(ctx):
+    """Start a release cycle with publishing a release branch"""
+    ctx.run("git flow release start -v v{}-release".format(get_current_version()))
+    ctx.run("git flow release publish")
+    ctx.run("git merge master --verbose")
+
+
+# noinspection PyUnusedLocal
+@task(check, sync, detox, post=[upload_pypi])
+def release_finish(ctx):
+    """Finish a release cycle with publishing a release branch"""
+    ctx.run("git flow release finish --fetch --push")
+
+
+# noinspection PyUnusedLocal
+@task(check, sync, detox, bump)
 def release(ctx):
     """Build new package version release and sync repo"""
     ctx.run("git checkout develop")
@@ -170,12 +192,15 @@ def release(ctx):
 
     ctx.run("git push origin develop --verbose")
     ctx.run("git push origin master --verbose")
+    ctx.run("git push --tags")
 
 
 # noinspection PyUnusedLocal
-@task(release, upload_pypi)
+@task(release, post=[upload_pypi])
 def publish(ctx):
-    """Release and upload new version"""
+    """Merge develop, create and upload new version"""
+    ctx.run("git checkout master")
+    ctx.run("git merge develop --verbose")
 
 
 @task
@@ -218,10 +243,7 @@ def trigger_tests(ctx):
         'GIT_WORK_TREE': ingeration_testing_root,
         'GIT_DIR': str(Path(ingeration_testing_root) / '.git'),
     }
-    from configparser import ConfigParser
-    cfg = ConfigParser()
-    cfg.read(str(Path(ROOT_DIR) / '.bumpversion.cfg'))
-    current_version = cfg.get('bumpversion', 'current_version')
+    current_version = get_current_version()
     ctx.run("git checkout develop", env=env)
     cmd = 'git commit --allow-empty -m "Test release {}"'.format(current_version)
     print(cmd)
