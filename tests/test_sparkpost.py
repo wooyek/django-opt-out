@@ -86,7 +86,7 @@ def test_plain_email_send():
     # you can build prefix from request, but I prefer to set it in settings
     from django.conf import settings
     unsubscribe = settings.BASE_URL + unsubscribe
-    body = 'Hello, Regards\n\nUnsubscribe: '+ unsubscribe
+    body = 'Hello, Regards\n\nUnsubscribe: ' + unsubscribe
 
     from django.core import mail
     message = mail.EmailMultiAlternatives(body=body, to=['django-opt-out@niepodam.pl'])
