@@ -93,3 +93,4 @@ fabric.properties
 .pyvenv
 .cache
 .tmp
+.pytest_cache
