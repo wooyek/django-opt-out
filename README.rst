@@ -108,7 +108,8 @@ Add unsubscribe links to your emails:
 .. code-block:: python
 
     from django_opt_out.utils import get_opt_out_path
-    unsubscribe = get_opt_out_path("", 'some', 'tags', 'controlling', 'questionnaire')
+    email='Django Opt-out <django-opt-out@niepodam.pl>'
+    unsubscribe = get_opt_out_path(email, 'some', 'tags', 'controlling', 'questionnaire')
 
     # unsubscribe link will not have a domain name and scheme
     # you can build prefix from request, but I prefer to set it in settings
@@ -117,7 +118,7 @@ Add unsubscribe links to your emails:
     body = 'Hello, Regards\n\nUnsubscribe: ' + unsubscribe
 
     from django.core import mail
-    message = mail.EmailMultiAlternatives(body=body, to=['django-opt-out@niepodam.pl'])
+    message = mail.EmailMultiAlternatives(body=body, to=[email])
     message.extra_headers['List-Unsubscribe'] = "<{}>".format(unsubscribe)
     message.send()
 

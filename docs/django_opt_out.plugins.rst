@@ -1,5 +1,5 @@
-django\_opt\_out\.plugins package
-=================================
+django\_opt\_out.plugins package
+================================
 
 Subpackages
 -----------

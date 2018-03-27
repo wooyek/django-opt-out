@@ -13,7 +13,7 @@ class UserFactory(factory.DjangoModelFactory):
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
     email = factory.Faker('email')
-    username = factory.Sequence(lambda n: fake.user_name() + str(n))
+    username = factory.Sequence(lambda n: fake.user_name() + str(n))  # pragma: no cover
     is_staff = False
     is_active = True
 
@@ -52,7 +52,7 @@ class OptOutFeedbackFactory(factory.DjangoModelFactory):
 
     @factory.post_generation
     def tags(self, create, extracted, **kwargs):
-        if not create:
+        if not create:  # pragma: no cover
             # Simple build, do nothing.
             return
 

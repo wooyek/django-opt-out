@@ -94,7 +94,7 @@ setup(
     install_requires=install_requires,
     extras_require={
         'factories': ['factory-boy'],
-        'sparkpost': ['sparkpost'],
+        'sparkpost': ['sparkpost>=1.3.6'],
     },
     license="MIT license",
     zip_safe=False,

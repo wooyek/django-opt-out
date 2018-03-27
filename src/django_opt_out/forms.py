@@ -1,7 +1,7 @@
 # coding=utf-8
 from django import forms
-from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import get_language
+from django.utils.translation import ugettext_lazy as _
 
 from . import models
 
@@ -12,6 +12,7 @@ class TranslatedMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 
 class OptOutForm(forms.ModelForm):
+    required_css_class = 'required'
     feedback = TranslatedMultipleChoiceField(
         label=_('Please help us provide a better service'),
         widget=forms.CheckboxSelectMultiple,
@@ -26,8 +27,8 @@ class OptOutForm(forms.ModelForm):
         }
 
     def save(self, commit=True):
-        item = super().save(commit)
-        if commit:
+        item = super(OptOutForm, self).save(commit)
+        if commit:  # pragma: no cover
             feedback = models.OptOutFeedback.objects.filter(pk__in=self.cleaned_data['feedback'])
             item.feedback.add(*feedback)
         return item
