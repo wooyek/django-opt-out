@@ -21,7 +21,7 @@ def send_email(subject, to, ctx, template_html, template_txt=None, **kwargs):
     message = _message_factory(html_message, text_message, subject=subject, to=to, **kwargs)
     log.debug("%s: %s", to, subject)
 
-    if 'unsubscribe' in ctx:
+    if 'unsubscribe' in ctx:  # pragma: nocover
         message.extra_headers['List-Unsubscribe'] = "<{}>".format(ctx['unsubscribe'])
         message.extra_headers['X-MSYS-API'] = json.dumps({'options': {'transactional': True}})
 
@@ -33,7 +33,7 @@ def send_email(subject, to, ctx, template_html, template_txt=None, **kwargs):
 
 def _message_factory(html_message, text_message, **kwargs):
     to = kwargs.pop('to')
-    if not isinstance(to, list):
+    if not isinstance(to, list):  # pragma: nocover
         to = [to]
     kwargs.setdefault('from_email', settings.DEFAULT_FROM_EMAIL)
     try:
@@ -41,7 +41,7 @@ def _message_factory(html_message, text_message, **kwargs):
     except AttributeError:
         pass
     message = mail.EmailMultiAlternatives(body=text_message, to=to, **kwargs)
-    if html_message:
+    if html_message:  # pragma: nocover
         message.attach_alternative(html_message, 'text/html')
     return message
 
@@ -49,12 +49,12 @@ def _message_factory(html_message, text_message, **kwargs):
 def _send_robust(message):
     try:
         return message.send()
-    except SparkPostAPIException as ex:
+    except SparkPostAPIException as ex:  # pragma: nocover
         if ex.status == 1902 or not settings.FAIL_ON_EMAIL_SUPPRESSION:
             logging.error("Email suppression: %s", message.to, exc_info=ex)
         else:
             raise
-    except (SMTPServerDisconnected, SMTPAuthenticationError) as ex:
+    except (SMTPServerDisconnected, SMTPAuthenticationError) as ex:  # pragma: nocover
         if not settings.SPARKPOST_RETRY_ONCE:
             raise
         logging.error("", exc_info=ex)
@@ -65,7 +65,7 @@ def _send_robust(message):
 def _render_message(ctx, template_html, template_txt):
     html_message = render_to_string(template_html, ctx)
     text_message = None
-    if template_txt is None:
+    if template_txt is None:  # pragma: nocover
         template_txt = (template_html.replace(".html", ".jinja2"), template_html.replace(".html", ".txt"))
     try:
         text_message = render_to_string(template_txt, ctx)
