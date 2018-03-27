@@ -86,7 +86,7 @@ def check(ctx):
 def detox(ctx):
     envs = ctx.run("tox -l").stdout.splitlines()
     envs.remove('report')
-    ctx.run("detox -e " + ",".join(env for env in envs[:-1]))
+    ctx.run("detox --skip-missing-interpreters -e " + ",".join(env for env in envs[:-1]))
     ctx.run("tox -e report")
 
 
