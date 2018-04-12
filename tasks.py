@@ -173,9 +173,10 @@ def assets(ctx):
 @task(check, sync, detox)
 def release_start(ctx):
     """Start a release cycle with publishing a release branch"""
-    ctx.run("git flow release start -v v{}-release".format(get_current_version()))
-    ctx.run("git flow release publish")
+    ctx.run("git flow release start v{}-release".format(get_current_version()))
     ctx.run("git merge master --verbose")
+    ctx.run("bumpversion patch --no-tag --verbose ")
+    ctx.run("git flow release --verbose publish")
 
 
 # noinspection PyUnusedLocal

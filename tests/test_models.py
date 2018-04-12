@@ -86,3 +86,13 @@ class OptOutFeedbackTest(TestCase):
         trans = item.trans('pl')
         self.assertEqual(text, trans)
         self.assertNotEqual(item.text, trans)
+
+    def test_name(self):
+        item = factories.OptOutFeedbackFactory()
+        self.assertEqual(item.text, str(item))
+
+
+class OptOutTagTests(TestCase):
+    def test_name(self):
+        item = factories.OptOutTagFactory()
+        self.assertEqual(item.name, str(item))

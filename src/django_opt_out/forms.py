@@ -28,7 +28,7 @@ class OptOutForm(forms.ModelForm):
 
     def save(self, commit=True):
         item = super(OptOutForm, self).save(commit)
-        if commit:
+        if commit:  # pragma: no cover
             feedback = models.OptOutFeedback.objects.filter(pk__in=self.cleaned_data['feedback'])
             item.feedback.add(*feedback)
         return item
