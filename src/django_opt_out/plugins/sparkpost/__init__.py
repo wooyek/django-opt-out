@@ -57,7 +57,7 @@ def _send_robust(message):
     except (SMTPServerDisconnected, SMTPAuthenticationError) as ex:  # pragma: no cover
         if not settings.SPARKPOST_RETRY_ONCE:
             raise
-        logging.error("", exc_info=ex)
+        logging.error("Email send failed. Will retry once.", exc_info=ex)
         # Retry once
         return message.send()
 
