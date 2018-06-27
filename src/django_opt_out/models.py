@@ -78,7 +78,7 @@ class OptOut(BaseModel):
         verbose_name_plural = _('oup outs')
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        super().save(force_insert, force_update, using, update_fields)
+        super(OptOut, self).save(force_insert, force_update, using, update_fields)
         signals.opt_out_saved.send_robust(self.__class__, opt_out=self)
 
 

@@ -67,7 +67,7 @@ To run an example project for this django reusable app, click the button below a
     :target: https://heroku.com/deploy
     :alt: Deploy Django Opt-out example project to Heroku
 
-.. image:: https://django-opt-out.readthedocs.io/en/latest/_images/Django-Opt-out-form.png
+.. image:: https://django-opt-out.readthedocs.io/en/latest/_static/Django-Opt-out-form.png
     :target: https://heroku.com/deploy
     :alt: Deploy Django Opt-out example project to Heroku
 
@@ -101,6 +101,26 @@ Add Django Opt-out application's URL patterns:
         url(r'^', include(django_opt_out_urls)),
         ...
     ]
+
+
+Add unsubscribe links to your emails:
+
+.. code-block:: python
+
+    from django_opt_out.utils import get_opt_out_path
+    email='Django Opt-out <django-opt-out@niepodam.pl>'
+    unsubscribe = get_opt_out_path(email, 'some', 'tags', 'controlling', 'questionnaire')
+
+    # unsubscribe link will not have a domain name and scheme
+    # you can build prefix from request, but I prefer to set it in settings
+    from django.conf import settings
+    unsubscribe = settings.BASE_URL + unsubscribe
+    body = 'Hello, Regards\n\nUnsubscribe: ' + unsubscribe
+
+    from django.core import mail
+    message = mail.EmailMultiAlternatives(body=body, to=[email])
+    message.extra_headers['List-Unsubscribe'] = "<{}>".format(unsubscribe)
+    message.send()
 
 
 Running Tests

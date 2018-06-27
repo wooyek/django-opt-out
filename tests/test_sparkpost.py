@@ -7,7 +7,7 @@ from mock import patch
 
 from .test_views import CaptureSignal
 from django_opt_out.models import OptOut
-from django_opt_out.plugins.sparkpost import signals
+from django_opt_out.plugins.sparkpost import send_email, signals
 
 
 class SparkPostHookTests(TestCase):
@@ -55,6 +55,44 @@ class SparkPostHookTests(TestCase):
         url = resolve_url("django_opt_out:OptOutConfirm")
         test.Client().post(url, data={'email': 'foo@bar.com'})
         self.assertTrue(create.called)
+
+
+# noinspection PyShadowingNames
+def test_send_mail_template(mocker, settings):
+    render_to_string = mocker.patch('django_opt_out.plugins.sparkpost.render_to_string')
+    render_to_string.return_value = \
+        "Ojciec Wirgiliusz uczył dzieci swoje. " \
+        "Na głowie przy tym stojąc wiele lat. " \
+        "Rzekł jeden z synów: – Tak bardzo się boję. " \
+        "O ciebie ojcze, boś już stary dziad."
+
+    to = settings.ADMINS[0][1] if settings.ADMINS else 'website@niepodam.pl'
+    from django_opt_out.utils import get_opt_out_path
+    ctx = {
+        'unsubscribe': settings.BASE_URL + get_opt_out_path(to, 'testing')
+    }
+    settings.EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    # To actually test sending an email, comment out mocking of EmailMultiAlternatives.send
+    send = mocker.patch('django.core.mail.message.EmailMultiAlternatives.send')
+    send_email(subject='Alicja w krainie czarów', to=to, template_html='notused.html', ctx=ctx)
+    assert send.called
+
+
+def test_plain_email_send():
+    from django_opt_out.utils import get_opt_out_path
+    unsubscribe = get_opt_out_path("", 'some', 'tags', 'controlling', 'questionnaire')
+
+    # unsubscribe link will not have a domain name and scheme
+    # you can build prefix from request, but I prefer to set it in settings
+    from django.conf import settings
+    unsubscribe = settings.BASE_URL + unsubscribe
+    body = 'Hello, Regards\n\nUnsubscribe: ' + unsubscribe
+
+    from django.core import mail
+    message = mail.EmailMultiAlternatives(body=body, to=['django-opt-out@niepodam.pl'])
+    message.extra_headers['List-Unsubscribe'] = "<{}>".format(unsubscribe)
+    message.send()
+
 
 list_unsubscribe = """[{"msys":{"unsubscribe_event":{"type":"list_unsubscribe","campaign_id":"Example Campaign Name","customer_id":"1","delv_method":"esmtp","event_id":"92356927693813856","friendly_from":"sender@example.com","ip_address":"127.0.0.1","ip_pool":"Example-Ip-Pool","mailfrom":"recipient@example.com","message_id":"000443ee14578172be22","msg_from":"sender@example.com","msg_size":"1337","num_retries":"2","queue_time":"12","rcpt_meta":{"customKey":"customValue"},"rcpt_tags":["male","US"],"rcpt_to":"recipient@example.com","raw_rcpt_to":"recipient@example.com","rcpt_type":"cc","routing_domain":"example.com","sending_ip":"127.0.0.1","subaccount_id":"101","subject":"Summer deals are here!","template_id":"templ-1234","template_version":"1","timestamp":"1454442600","transmission_id":"65832150921904138"}}}]"""  # noqa E501
 link_unsubscribe = """[{"msys":{"unsubscribe_event":{"type":"link_unsubscribe","campaign_id":"Example Campaign Name","customer_id":"1","delv_method":"esmtp","event_id":"92356927693813856","friendly_from":"sender@example.com","ip_address":"127.0.0.1","ip_pool":"Example-Ip-Pool","mailfrom":"recipient@example.com","message_id":"000443ee14578172be22","msg_from":"sender@example.com","msg_size":"1337","num_retries":"2","queue_time":"12","rcpt_meta":{"customKey":"customValue"},"rcpt_tags":["male","US"],"rcpt_to":"recipient@example.com","raw_rcpt_to":"recipient@example.com","rcpt_type":"cc","routing_domain":"example.com","sending_ip":"127.0.0.1","subaccount_id":"101","subject":"Summer deals are here!","template_id":"templ-1234","template_version":"1","timestamp":"1454442600","transmission_id":"65832150921904138","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36"}}}]"""  # noqa E501
