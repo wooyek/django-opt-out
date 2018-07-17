@@ -162,8 +162,8 @@ msgid ""
 msgstr ""
 "\n"
 "    <p>Bardzo nam przykro, że sprawiliśmy że nasze wiadomości stały się dla Ciebie niewygodne. Przyjmij nasze przeprosiny.</p>\n"
-"    <P>Staramy się cały czas poprawiać naszą usługę i chcemy by nasze wiadomości były dla Ciebie interesujące i korzystne.</P>\n"
-"    <p>Naprawdę chcemy uczyć się na naszych błędach i czytamy - my, żywi ludzie po drugiej stronie - każdy komentarz do rezygnacji.Naprawdę doceniamy każdą informację zwrotną.</p>\n"
+"    <p>Staramy się cały czas poprawiać naszą usługę i chcemy by nasze wiadomości były dla Ciebie interesujące i korzystne.</p>\n"
+"    <p>Naprawdę chcemy uczyć się na naszych błędach i czytamy - my, żywi ludzie po drugiej stronie - każdy komentarz do rezygnacji. Naprawdę doceniamy każdą informację zwrotną.</p>\n"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/removed.html:8
 #: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:8
