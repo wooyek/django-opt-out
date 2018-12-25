@@ -1,5 +1,5 @@
 {% extends "django_opt_out/base.html" %}
-{% load bootstrap i18n %}
+{% load i18n %}
 {% block content %}
     <div class="container">
     <div class="row">
@@ -10,7 +10,7 @@
                     <form role="form" method="POST">
                         {% csrf_token %}
                         {% include "django_opt_out/OptOut/form_apologies.html" %}
-                        {{ form|bootstrap }}
+                        {{ form.as_p }}
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">{% blocktrans %}Confirm opt-out{% endblocktrans %}</button>
                         </div>
