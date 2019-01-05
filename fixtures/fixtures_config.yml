@@ -1,7 +1,0 @@
-# This file defines list of file and order for fixture dump
-# it is used by task.py
-auth:
-  - auth.Group
-  - auth.User
-contenttypes:
-  - contenttypes
