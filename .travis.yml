@@ -42,6 +42,8 @@ matrix:
 
     allow_failures:
       - python: "3.4"
+      # 3.7 is currently not supported
+      - python: "3.7" 
       - python: "2.7"
       - env: DJANGO=1.8
       - env: DJANGO=1.9
