@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-27 12:41+0000\n"
+"POT-Creation-Date: 2018-07-17 18:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,142 +17,132 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: build/lib/django_opt_out/apps.py:18 src/django_opt_out/apps.py:18
+#: build/lib/django_opt_out/apps.py:18
 msgid "Messaging Opt-Outs"
 msgstr "Rezygnacje z przesyłania wiadomości"
 
-#: build/lib/django_opt_out/forms.py:16 src/django_opt_out/forms.py:16
+#: build/lib/django_opt_out/forms.py:16
 msgid "Please help us provide a better service"
 msgstr "Pomóż nam dostarczać lepsze usługi"
 
-#: build/lib/django_opt_out/forms.py:25 src/django_opt_out/forms.py:25
+#: build/lib/django_opt_out/forms.py:25
 msgid "Please tell us what can we do better"
 msgstr "Powiedz nam, co możemy zrobić lepiej"
 
 #: build/lib/django_opt_out/management/commands/opt_out_feedback_defaults.py:53
-#: src/django_opt_out/management/commands/opt_out_feedback_defaults.py:53
 msgid "Data set has no columns"
 msgstr "Zbiór danych nie ma kolumn"
 
 #: build/lib/django_opt_out/management/commands/opt_out_feedback_defaults.py:55
-#: src/django_opt_out/management/commands/opt_out_feedback_defaults.py:55
 msgid "Data set has no rows"
 msgstr "Zbiór danych nie ma rzędów"
 
 #: build/lib/django_opt_out/management/commands/opt_out_feedback_defaults.py:59
-#: src/django_opt_out/management/commands/opt_out_feedback_defaults.py:59
 msgid "Trying to import {}"
 msgstr "Próbuję zaimportować {}"
 
 #: build/lib/django_opt_out/management/commands/opt_out_feedback_defaults.py:61
-#: src/django_opt_out/management/commands/opt_out_feedback_defaults.py:61
 msgid "Imported {} rows from {}"
 msgstr "Zaimportowano {} lini z {}"
 
-#: build/lib/django_opt_out/models.py:13 src/django_opt_out/models.py:13
+#: build/lib/django_opt_out/models.py:13
 msgid "tag name"
 msgstr "nazwa etykiety"
 
-#: build/lib/django_opt_out/models.py:14 src/django_opt_out/models.py:14
+#: build/lib/django_opt_out/models.py:14
 msgid "description"
 msgstr "opis"
 
 #: build/lib/django_opt_out/models.py:18 build/lib/django_opt_out/models.py:92
-#: src/django_opt_out/models.py:18 src/django_opt_out/models.py:92
 msgid "tag"
 msgstr "etykieta"
 
 #: build/lib/django_opt_out/models.py:19 build/lib/django_opt_out/models.py:30
-#: build/lib/django_opt_out/models.py:93 src/django_opt_out/models.py:19
-#: src/django_opt_out/models.py:30 src/django_opt_out/models.py:93
+#: build/lib/django_opt_out/models.py:93
 msgid "tags"
 msgstr "etykiety"
 
-#: build/lib/django_opt_out/models.py:26 src/django_opt_out/models.py:26
+#: build/lib/django_opt_out/models.py:26
 msgid "text"
 msgstr "text"
 
-#: build/lib/django_opt_out/models.py:28 src/django_opt_out/models.py:28
+#: build/lib/django_opt_out/models.py:28
 msgid "checked by default"
 msgstr "domyślnie zaznaczone"
 
-#: build/lib/django_opt_out/models.py:29 src/django_opt_out/models.py:29
+#: build/lib/django_opt_out/models.py:29
 msgid "ordinal"
 msgstr "porządkowy"
 
-#: build/lib/django_opt_out/models.py:34 src/django_opt_out/models.py:34
+#: build/lib/django_opt_out/models.py:34
 msgid "feedback option"
 msgstr "element informacji zwrotnej"
 
-#: build/lib/django_opt_out/models.py:35 src/django_opt_out/models.py:35
+#: build/lib/django_opt_out/models.py:35
 msgid "feedback options"
 msgstr "elementy informacji zwrotnej"
 
-#: build/lib/django_opt_out/models.py:50 src/django_opt_out/models.py:50
+#: build/lib/django_opt_out/models.py:50
 msgid "question"
 msgstr "pytanie"
 
-#: build/lib/django_opt_out/models.py:55 src/django_opt_out/models.py:55
+#: build/lib/django_opt_out/models.py:55
 msgid "feedback option translation"
 msgstr "tłumaczenie elementu informacji zwrotnej"
 
-#: build/lib/django_opt_out/models.py:56 src/django_opt_out/models.py:56
+#: build/lib/django_opt_out/models.py:56
 msgid "feedback options translations"
 msgstr "tłumaczenia elementów informacji zwrotnej"
 
-#: build/lib/django_opt_out/models.py:60 src/django_opt_out/models.py:60
+#: build/lib/django_opt_out/models.py:60
 msgid "email"
 msgstr "email"
 
-#: build/lib/django_opt_out/models.py:61 src/django_opt_out/models.py:61
+#: build/lib/django_opt_out/models.py:61
 msgid "update timestamp"
 msgstr "sygnatura czasowa aktualizacji"
 
-#: build/lib/django_opt_out/models.py:62 src/django_opt_out/models.py:62
+#: build/lib/django_opt_out/models.py:62
 msgid "confirmation timestamp"
 msgstr "sygnatura czasowa potwierdzenia"
 
-#: build/lib/django_opt_out/models.py:63 src/django_opt_out/models.py:63
+#: build/lib/django_opt_out/models.py:63
 msgid "extra data"
 msgstr "dodatkowe dane"
 
-#: build/lib/django_opt_out/models.py:64 src/django_opt_out/models.py:64
+#: build/lib/django_opt_out/models.py:64
 msgid "comment"
 msgstr "komentarz"
 
-#: build/lib/django_opt_out/models.py:65 src/django_opt_out/models.py:65
+#: build/lib/django_opt_out/models.py:65
 msgid "feedback"
 msgstr "feedback"
 
-#: build/lib/django_opt_out/models.py:77 src/django_opt_out/models.py:77
+#: build/lib/django_opt_out/models.py:77
 msgid "opt out"
 msgstr "rezygnacja"
 
-#: build/lib/django_opt_out/models.py:78 src/django_opt_out/models.py:78
+#: build/lib/django_opt_out/models.py:78
 msgid "oup outs"
 msgstr "rezygnacje"
 
-#: build/lib/django_opt_out/models.py:88 src/django_opt_out/models.py:88
+#: build/lib/django_opt_out/models.py:88
 msgid "tag value"
 msgstr "wartość etykiety"
 
 #: build/lib/django_opt_out/plugins/sparkpost/apps.py:10
-#: src/django_opt_out/plugins/sparkpost/apps.py:10
 msgid "Messaging Opt-Outs SparkPost plugin"
 msgstr "Dodatek SparkPost do rezygnacji z przesyłania wiadomości"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/form.html:8
-#: src/django_opt_out/templates/django_opt_out/OptOut/form.html:8
 msgid "Opt out from our messages"
 msgstr "Zrezygnuj z naszych wiadomości"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/form.html:15
-#: src/django_opt_out/templates/django_opt_out/OptOut/form.html:15
 msgid "Confirm opt-out"
 msgstr "Potwierdź rezygnację"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/form_apologies.html:2
-#: src/django_opt_out/templates/django_opt_out/OptOut/form_apologies.html:2
 msgid ""
 "\n"
 "    <p>We're sorry that we overstepped and made our messages inconvenient to you. Please accept our apologies.</p>\n"
@@ -162,41 +152,34 @@ msgid ""
 msgstr ""
 "\n"
 "    <p>Bardzo nam przykro, że sprawiliśmy że nasze wiadomości stały się dla Ciebie niewygodne. Przyjmij nasze przeprosiny.</p>\n"
-"    <P>Staramy się cały czas poprawiać naszą usługę i chcemy by nasze wiadomości były dla Ciebie interesujące i korzystne.</P>\n"
-"    <p>Naprawdę chcemy uczyć się na naszych błędach i czytamy - my, żywi ludzie po drugiej stronie - każdy komentarz do rezygnacji.Naprawdę doceniamy każdą informację zwrotną.</p>\n"
+"    <p>Staramy się cały czas poprawiać naszą usługę i chcemy by nasze wiadomości były dla Ciebie interesujące i korzystne.</p>\n"
+"    <p>Naprawdę chcemy uczyć się na naszych błędach i czytamy - my, żywi ludzie po drugiej stronie - każdy komentarz do rezygnacji. Naprawdę doceniamy każdą informację zwrotną.</p>\n"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/removed.html:8
-#: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:8
 msgid "Your Opt-out was removed"
 msgstr "Twoja rezygnacja została anulowana"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/removed.html:10
-#: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:10
 msgid "Thank you for changing your mind :)"
 msgstr "Dziękujemy za zmianę zdania!"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/removed.html:11
-#: src/django_opt_out/templates/django_opt_out/OptOut/removed.html:11
 msgid "You are back in!"
 msgstr "Jesteś z powrotem!"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/success.html:8
-#: src/django_opt_out/templates/django_opt_out/OptOut/success.html:8
 msgid "Thank you for your feedback!"
 msgstr "Dziękujemy za Twoją opinię!"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/success.html:14
-#: src/django_opt_out/templates/django_opt_out/OptOut/success.html:14
 msgid "Update opt-out feedback"
 msgstr "Aktualizuj informację zwrotną"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/success.html:16
-#: src/django_opt_out/templates/django_opt_out/OptOut/success.html:16
 msgid "Opt-in"
 msgstr "Usuń rezygnację"
 
 #: build/lib/django_opt_out/templates/django_opt_out/OptOut/success_apologies.html:2
-#: src/django_opt_out/templates/django_opt_out/OptOut/success_apologies.html:2
 msgid ""
 "\n"
 "    <p>Again, please accept our apologies for any inconvenience that we cased you.</p>\n"
@@ -206,6 +189,6 @@ msgstr ""
 "    <p>Jeszcze raz przepraszamy za kłopoty jakie Tobie sprawiliśmy.</p>\n"
 "    <p>W dowolnym momencie możesz zmienić swoją informację zwrotną lub przywrócić nasze wiadomości.</p>\n"
 
-#: build/lib/django_opt_out/views.py:85 src/django_opt_out/views.py:85
+#: build/lib/django_opt_out/views.py:85
 msgid "Request authentication failed, secret or email is incorrect."
 msgstr "Uwierzytelnienie nie powiodło się, nieprawidłowy sekret lub email"
