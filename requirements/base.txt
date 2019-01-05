@@ -4,8 +4,9 @@
 # Freezing can be perforemd by pip-compile or pipenv
 
 click
-django<2.0 ; python_version < '3.5'
-django>=2.0 ; python_version >= '3.5'
+django<2.0 ; python_version < '3.4'
+django<2.1 ; python_version < '3.5'
+django     ; python_version >= '3.5'
 django-bootstrap-form
 django-import-export
 django-pascal-templates
