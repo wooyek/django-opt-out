@@ -17,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/docs/_build" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.5 (django-opt-out)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (django-opt-out)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery-3.2.1.slim" level="application" />
     <orderEntry type="library" name="popper" level="application" />
