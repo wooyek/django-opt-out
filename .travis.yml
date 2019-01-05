@@ -61,30 +61,31 @@ install:
   - git --version
 
 script:
-  - tox
+  - tox --skip-missing-interpreters
 
 jobs:
   include:
     - stage: make
-      python: "3.5"
+      python: "3.6"
       script:
           - which python
           - tox --version
           - pwd
           - ls -la
-          - make
-          - make bump
-          - make lint
-          - make test
-          - make tox
-          - make detox
-          - make coverage
-          - make dist
-          - make install
-          - make docs
+          - inv
+          - inv bump
+          - inv isort
+          - inv check
+          - inv tox
+          - inv detox
+          - inv coverage
+          - inv dist
+          - inv install
+          - inv docs
+          - inv pip-compile
           # Lint again after docs generation
-          - make lint
-          - make clean
+          - inv check
+          - inv clean
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
