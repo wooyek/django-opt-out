@@ -51,4 +51,3 @@ class OptOutFeedbackAdmin(ImportExportMixin, admin.ModelAdmin):
     # noinspection PyUnusedLocal,PyMethodMayBeStatic
     def queryset(self, request, queryset):
         return queryset.prefech_related('tags')
-
