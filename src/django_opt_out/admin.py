@@ -1,4 +1,5 @@
 # coding=utf-8
+from django.conf import global_settings
 from django.contrib import admin
 from import_export.admin import ImportExportMixin
 
@@ -30,6 +31,10 @@ class OptOutFeedbackTranslationInline(admin.TabularInline):
     resource_class = resources.OptOutFeedbackResource
     model = models.OptOutFeedbackTranslation
 
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+        if db_field.name == "language":
+            kwargs['choices'] = global_settings.LANGUAGES
+        return super(OptOutFeedbackTranslationInline, self).formfield_for_choice_field(db_field, request, **kwargs)
 
 @admin.register(models.OptOutFeedback)
 class OptOutFeedbackAdmin(ImportExportMixin, admin.ModelAdmin):
@@ -46,3 +51,4 @@ class OptOutFeedbackAdmin(ImportExportMixin, admin.ModelAdmin):
     # noinspection PyUnusedLocal,PyMethodMayBeStatic
     def queryset(self, request, queryset):
         return queryset.prefech_related('tags')
+

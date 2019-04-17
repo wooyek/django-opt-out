@@ -46,7 +46,7 @@ class OptOutFeedback(BaseModel):
 
 class OptOutFeedbackTranslation(BaseModel):
     feedback = models.ForeignKey(OptOutFeedback, on_delete=models.CASCADE)
-    language = models.CharField(max_length=5, choices=global_settings.LANGUAGES)
+    language = models.CharField(max_length=5)
     text = models.CharField(verbose_name=_('question'), max_length=250)
 
     class Meta:

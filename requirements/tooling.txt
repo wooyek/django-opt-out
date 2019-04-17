@@ -9,6 +9,7 @@ detox
 flake8
 invoke
 isort
+pip-tools
 pygments
 readme-renderer
 setuptools
