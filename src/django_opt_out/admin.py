@@ -36,6 +36,7 @@ class OptOutFeedbackTranslationInline(admin.TabularInline):
             kwargs['choices'] = global_settings.LANGUAGES
         return super(OptOutFeedbackTranslationInline, self).formfield_for_choice_field(db_field, request, **kwargs)
 
+
 @admin.register(models.OptOutFeedback)
 class OptOutFeedbackAdmin(ImportExportMixin, admin.ModelAdmin):
     resource_class = resources.OptOutFeedbackResource
