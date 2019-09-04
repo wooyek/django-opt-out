@@ -7,8 +7,8 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
-from . import signals
 from ...signals import send_signal
+from . import signals
 
 log = logging.getLogger(__name__)
 

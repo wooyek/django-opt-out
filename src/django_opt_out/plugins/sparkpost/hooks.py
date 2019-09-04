@@ -7,8 +7,8 @@ from django.dispatch import receiver
 from django.utils.functional import SimpleLazyObject
 from sparkpost.exceptions import SparkPostAPIException
 
-from . import signals
 from ... import signals as opt_out
+from . import signals
 
 log = logging.getLogger(__name__)
 
