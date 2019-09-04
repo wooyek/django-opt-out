@@ -12,9 +12,9 @@ pytest>=4.4.0 ; python_version > '3.3'
 pytest-cov
 #python-coveralls
 pytest-django>=3.4.3
+pytest-doctest-ellipsis-markers
 pytest-html
 pytest-lazy-fixture
 pytest-mock
 pytest-sugar
 pytest-xdist
-pytest-doctest-ellipsis-markers

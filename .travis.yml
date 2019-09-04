@@ -66,6 +66,7 @@ install:
   - pip --version
   - tox --version
   - git --version
+  - inv --version
 
 script:
   - tox --skip-missing-interpreters
@@ -84,7 +85,6 @@ jobs:
           - inv isort
           - inv check
           - inv tox
-          - inv detox
           - inv coverage
           - inv dist
           - inv install

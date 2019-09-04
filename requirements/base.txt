@@ -1,11 +1,12 @@
-# Django Opt Out dependencies
-# Django maybe missing here if multiple verssions are to be tested and installed by tox
+# Base dependencies
+# Django maybe missing here if multiple versions are to be tested and installed by tox
 # For development we keep them unfreezed to work and test on newest versions as soon as they are released
-# Freezing can be perforemd by pip-compile or pipenv
+# Freezing can be performed by pip-compile or pipenv
 
 click
+# https://docs.djangoproject.com/en/dev/faq/install/#faq-python-version-support
 django<2.0 ; python_version < '3.4'
-django<2.1 ; python_version < '3.5'
+django<2.1 ; python_version == '3.4'
 django     ; python_version >= '3.5'
 django-bootstrap-form
 django-import-export

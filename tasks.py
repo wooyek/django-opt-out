@@ -21,6 +21,7 @@ import shutil
 import sys
 import webbrowser
 from collections import OrderedDict
+from datetime import datetime
 from itertools import chain
 from pathlib import Path
 
@@ -30,8 +31,8 @@ from urllib.request import pathname2url
 from invoke import call, task
 
 logging.basicConfig(format='%(asctime)s %(levelname)-7s %(thread)-5d %(filename)s:%(lineno)s | %(funcName)s | %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-# logging.getLogger().setLevel(logging.INFO)
-# logging.disable(logging.NOTSET)
+logging.getLogger().setLevel(logging.INFO)
+logging.disable(logging.NOTSET)
 logging.debug('Loading %s', __name__)
 log = logging.getLogger(__name__)
 
@@ -52,6 +53,7 @@ def get_current_version():
 # noinspection PyUnusedLocal
 @task
 def version(ctx):
+    ctx.run("python -V")
     print("Version: " + get_current_version())
 
 
@@ -92,7 +94,11 @@ def check(ctx):
     """Check project codebase cleanness"""
     ctx.run("flake8 src tests setup.py manage.py")
     ctx.run("isort --check-only --diff --recursive src tests setup.py")
-    ctx.run("python setup.py check --strict --metadata --restructuredtext")
+    # ctx.run("python setup.py check --strict --metadata --restructuredtext")
+    ctx.run("python setup.py sdist")
+    ctx.run("python setup.py bdist_wheel")
+    ctx.run("twine check dist/*.whl")
+    ctx.run("twine check dist/*.tar.gz")
     ctx.run("check-manifest  --ignore .idea,.idea/* .")
     ctx.run("pytest --cov=src --cov=tests --cov-fail-under=5 -n auto --html="+str(PROJ_TMP_DIR / 'pytest.html'))
 
@@ -104,22 +110,27 @@ def coverage(ctx):
 
 
 @task
+def docs(ctx, browse=False, build=True):
+    if build:
+        ctx.run("sphinx-build -b html docs dist/docs")
+        ctx.run("sphinx-build -b linkcheck docs dist/docs")
+        ctx.run("sphinx-build -b spelling docs dist/docs")
+        ctx.run("cat dist/docs/output.txt")
+    if browse:
+        webbrowser.open("file://" + pathname2url(str(ROOT_DIR / 'dist' / 'docs' / 'index.html')))
+
+
+@task
 def isort(ctx):
     """Check project codebase cleanness"""
     ctx.run("isort --recursive src tests setup.py")
 
 
 @task
-def detox(ctx):
-    """Run detox with a subset of envs and report run separately"""
-    envs = ctx.run("tox -l").stdout.splitlines()
-    envs.remove('clean')
-    envs.remove('report')
-    envs = [e for e in envs if not e.startswith('py2')]
-    log.info("Detox a subset of environments: %s", envs)
-    ctx.run("tox -e clean")
-    ctx.run("detox --skip-missing-interpreters -e " + ",".join(envs))
-    ctx.run("tox -e report")
+def tox(ctx):
+    """Run tox in paralel"""
+    # ctx.run("tox --parallel auto -o", pty=True)
+    ctx.run("tox", pty=True)
 
 
 @task
@@ -186,10 +197,21 @@ def sync_master(ctx):
 
 
 @task()
-def bump(ctx):
+def bump(ctx, minor=False):
     """Increment version number"""
     # ctx.run("bumpversion patch --no-tag")
-    ctx.run("bumpversion patch")
+    if minor:
+        ctx.run("bumpversion minor")
+    else:	
+        ctx.run("bumpversion patch --allow-dirty")
+    import re
+    version_file = ROOT_DIR / "src" / "website" / "__init__.py"
+    text = version_file.read_text()
+    new_date = "__date__ = '{:%Y-%m-%d %H:%M}'".format(datetime.now())
+    text = re.sub(r"__date__ = .*", new_date, text)
+    version_file.write_text(text)
+    ctx.run('git add '+str(version_file))
+    ctx.run('git commit --allow-empty --amend --no-edit')
 
 
 @task()
@@ -230,7 +252,7 @@ def assets(ctx):
 
 
 # noinspection PyUnusedLocal
-@task(check, sync, detox)
+@task(check, sync, tox)
 def release_start(ctx):
     """Start a release cycle with publishing a release branch"""
     ctx.run("git flow release start v{}-release".format(get_current_version()))
@@ -240,14 +262,14 @@ def release_start(ctx):
 
 
 # noinspection PyUnusedLocal
-@task(check, sync, detox, post=[])
+@task(check, sync, tox, post=[])
 def release_finish(ctx):
     """Finish a release cycle with publishing a release branch"""
     ctx.run("git flow release finish --fetch --push")
 
 
 # noinspection PyUnusedLocal
-@task(isort, check, pip_compile, sync, detox, bump, sync_master)
+@task(isort, check, pip_compile, sync, tox, bump, sync_master)
 def release(ctx):
     """Build new package version release and sync repo"""
 
@@ -323,7 +345,7 @@ def trigger_tests(ctx):
     ctx.run("git push origin develop", env=env)
 
 
-@task(iterable=['remote'], help={'remote': "Git remote used to ship local repository"})
+@task(iterable=['remote'], help={'remote': "Git remote used to ship local repository"}, post=[])
 def ship(ctx, remote='dev', branch='master'):
     """
     Ship current version to a remote environment
@@ -331,8 +353,17 @@ def ship(ctx, remote='dev', branch='master'):
     ctx.run("git checkout {branch}".format(branch=branch))
     ctx.run("git push {remote} {branch}  --verbose".format(remote=remote, branch=branch))
     ctx.run("git checkout develop")
+
     # Uncomment this to show release script output
     ctx.run("heroku logs -r {remote}".format(remote=remote))
+
+    # Uncomment this to show docker running containers
+    # print("===== Checking out free space")
+    # ctx.run("ssh user@dev.example.com df -h")
+    # print("===== Listing containers")
+    # ctx.run("ssh user@dev.example.com docker ps")
+
+    print("[ OK ] Deployed: {} v{}".format(remote, get_current_version()))
 
 
 # noinspection PyUnusedLocal
@@ -374,7 +405,6 @@ def vagrant(ctx):
     ctx.run("git push vagrant develop --verbose")
 
 
-
 @task
 def dump(ctx):
     """Dump django fixtures with initial and test data"""
@@ -411,7 +441,7 @@ def load_fixtures(ctx):
 
     for fixture in fixtures.keys():
         fixture = str(ROOT_DIR / 'fixtures' / (fixture + '.json'))
-        log.info("Dumping fixture: %s" % fixture)
+        log.info("Loading fixture: %s" % fixture)
         cmd = "python manage.py loaddata " + fixture
         logging.debug(cmd)
         ctx.run(cmd)
