@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwooyek%2Fdjango-opt-out.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwooyek%2Fdjango-opt-out?ref=badge_shield)
+
 ==========================
 Django Opt-out application
 ==========================
@@ -141,3 +143,6 @@ This package was created with Cookiecutter_ and the `wooyek/cookiecutter-django-
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`wooyek/cookiecutter-django-app`: https://github.com/wooyek/cookiecutter-django-app
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwooyek%2Fdjango-opt-out.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwooyek%2Fdjango-opt-out?ref=badge_large)
